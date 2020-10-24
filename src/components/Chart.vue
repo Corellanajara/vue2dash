@@ -1,13 +1,15 @@
 <template>
 <div>
-  
-  <div class="card">
-      <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
-  </div>
-  <div>
-       <button @click="updateChart">Refresca!</button>
-  </div>
-  
+  <button @click="show = !show">Toggle render</button>
+  <transition name="slide-fade">
+    <div v-if="show" class="card">
+      <div>
+        <div id="example-1">
+          <apexcharts v-if="msg && show"  class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
+        </div>
+      </div>
+    </div>
+  </transition>
 </div>
     
     
@@ -16,10 +18,12 @@
 <script>
 import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
+
 var obj = {
   name: 'Chart',
   info:Array,
   props:{
+    show:true,
     msg:Array
   },
   components: {
@@ -81,7 +85,7 @@ var x = "grafico culiao"
 <style scoped>
   .card{
     width: 85%;
-    background: white;
+    background: black;
     margin-top: 5%;
     margin-left: 7.5%;
     margin-right: 10%;
@@ -97,5 +101,19 @@ var x = "grafico culiao"
     margin-left:25%;
     padding: 0%;    
   }
+
+
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+  
 
 </style>

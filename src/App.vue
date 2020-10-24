@@ -1,6 +1,13 @@
 <template>
   <div>
-    
+    <div id="example-1">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <transition name="slide-fade">
+    <p v-if="show">hello</p>
+  </transition>
+</div>
     <div>
       <hello-app textoculiao="soy una card "></hello-app>
       <hello-app textoculiao="soy una card "></hello-app>
@@ -29,7 +36,7 @@ export default {
         { text: 'Item 2' }
       ],
       stats:null,
-      var1: 'hola cabros',               
+      var1: 'hola cabros',        
     }
   }
   ,
@@ -70,4 +77,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
 </style>
