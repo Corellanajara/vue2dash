@@ -14,9 +14,11 @@
 </template>
 
 <script>
+import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
   name: 'Chart',
+  info:Array,
   props:{
     msg:Array
   },
@@ -45,7 +47,7 @@ var obj = {
       console.log("refrescanding", this.msg)     ;
         this.series = [{
           name: x,
-          data: await this.msg
+          data: await this.info
         }]
       }
   }
@@ -54,10 +56,20 @@ var obj = {
        this.updateChart();
   },
   mounted() {
-    this.series = [{
-          name: x,
-          data: this.msg
-        }]
+    
+    axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
+    .then(response => {
+      console.log(response);
+      var stats = response.data.stats
+      var realStats = [];
+      for(var stat of stats){
+        
+        realStats.push(stat['base_stat']);
+      }
+      console.log(realStats);
+      this.info = realStats;
+      this.updateChart();
+      })
   }
   
 }

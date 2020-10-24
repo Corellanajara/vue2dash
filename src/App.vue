@@ -3,13 +3,12 @@
     
     <div>
       <hello-app textoculiao="soy una card "></hello-app>
-      <hello-app></hello-app>
-      <hello-app></hello-app>
+      <hello-app textoculiao="soy una card "></hello-app>
+      <hello-app textoculiao="soy una card "></hello-app>
     </div>
     <div >
-      <chart-app v-if="stats" :msg="stats"></chart-app>    
-      <hello-app v-if="!stats" textoculiao="Aun no carga la wea"></hello-app>
-      <chart-app v-if="stats" :msg="stats"></chart-app>
+      <chart-app v-if="stats" msg="charizard"></chart-app>          
+      <chart-app v-if="stats" msg="charmander"></chart-app>      
     </div>
   </div>
 </template>
@@ -51,8 +50,8 @@ export default {
         realStats.push(stat['base_stat']);
       }
       console.log(realStats);
-      this.stats = realStats;
-
+      //this.stats = realStats;
+      this.stats = []
       })
   }
 }
