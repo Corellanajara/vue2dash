@@ -7,8 +7,8 @@
       <hello-app textoculiao="soy una card "></hello-app>
     </div>
     <div >
-      <chart-app v-if="stats" msg="charizard"></chart-app>          
-      <chart-app v-if="stats" msg="charmander"></chart-app>      
+      <chart-app  msg="charizard"></chart-app>          
+      <chart-app  msg="charmander"></chart-app>      
     </div>
   </div>
 </template>
@@ -38,22 +38,7 @@ export default {
     'chart-app':Chart,
     'card-app':CardCustom    
   }
-  ,
-  mounted() {
-    axios.get("https://pokeapi.co/api/v2/pokemon/charizard")
-    .then(response => {
-      console.log(response);
-      var stats = response.data.stats
-      var realStats = [];
-      for(var stat of stats){
-        
-        realStats.push(stat['base_stat']);
-      }
-      console.log(realStats);
-      //this.stats = realStats;
-      this.stats = []
-      })
-  }
+ 
 }
 
 </script>
