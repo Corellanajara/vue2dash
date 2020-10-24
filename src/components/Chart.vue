@@ -1,16 +1,8 @@
 <template>
-<div>
-  
-  <div class="card">
-      <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
-  </div>
   <div>
-       <button @click="updateChart">Refresca!</button>
+    <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
+  <button @click="updateChart">Refresca!</button>
   </div>
-  
-</div>
-    
-    
 </template>
 
 <script>
@@ -79,22 +71,9 @@ var x = "grafico culiao"
 </script>
 
 <style scoped>
-  .card{
-    width: 85%;
-    background: white;
-    margin-top: 5%;
-    margin-left: 7.5%;
-    margin-right: 10%;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
-    box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
-    border-radius: 5px;
-  }
   .chart{
-    width: 50%;
-    margin-left:25%;
+    width: 90%;
+    margin-left:10%;
     padding: 0%;    
   }
 
