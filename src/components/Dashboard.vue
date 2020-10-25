@@ -2,6 +2,7 @@
   <div class="dashboard-container">
     <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element">
         <chart-app class="prueba" :msg="element.name" v-if="element.type == 'chart'"></chart-app>
+        <spark-app class="prueba" :msg="element.name" v-if="element.type == 'sparkline'"></spark-app>        
         <h1 v-if="element.type == 'text'">{{element.name}}</h1>
         <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
@@ -10,6 +11,7 @@
 
 <script>
 import Chart from './Chart.vue'
+import Sparkline from './Sparkline.vue'
 
 export default {
   name: 'Dashboard',
@@ -30,6 +32,7 @@ export default {
   },
   components: {
     'chart-app':Chart,
+    'spark-app':Sparkline
   }
 }
 
