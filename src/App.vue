@@ -1,7 +1,14 @@
 <template>
+
   <div class="caja">
     <!--<mail-app title="Hola"></mail-app>-->
    </div>
+
+  <div>
+    <chart-app  msg="charizard"></chart-app>          
+    <chart-app  msg="charmander"></chart-app>      
+  </div>
+
 </template>
 
 <script>
@@ -31,22 +38,7 @@ export default {
     'card-app':CardCustom,
     'mail-app':MailCard,
   }
-  ,
-  mounted() {
-    axios.get("https://pokeapi.co/api/v2/pokemon/charizard")
-    .then(response => {
-      //console.log(response);
-      var stats = response.data.stats
-      var realStats = [];
-      for(var stat of stats){
 
-        realStats.push(stat['base_stat']);
-      }
-      //console.log(realStats);
-      //this.stats = realStats;
-      this.stats = []
-      })
-  }
 }
 
 var ok = true;
