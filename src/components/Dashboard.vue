@@ -2,6 +2,8 @@
   <div class="dashboard-container">
     <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element">
         <chart-app class="prueba" :msg="element.name" v-if="element.type == 'chart'"></chart-app>
+        <donut-app class="prueba" :msg="element.name" v-if="element.type == 'donut'"></donut-app>
+        <progress-app class="prueba" :msg="element.name" v-if="element.type == 'progress'"></progress-app>
         <h1 v-if="element.type == 'text'">{{element.name}}</h1>
         <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
@@ -10,6 +12,8 @@
 
 <script>
 import Chart from './Chart.vue'
+import DonutChart from '../charts/DonutChart.vue'
+import ProgressChart from '../charts/ProgressChart.vue'
 
 export default {
   name: 'Dashboard',
@@ -19,8 +23,8 @@ export default {
   data: function (){
       return {elements:[{name:'charmander',size:'bigger',type:'chart',chart:''},
                         {name:'charmeleon',size:'medium',type:'chart',chart:''},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'bigger',type:'donut',chart:'pie'},
+                        {name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
@@ -30,6 +34,8 @@ export default {
   },
   components: {
     'chart-app':Chart,
+    'donut-app':DonutChart,
+    'progress-app':ProgressChart,
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">hola</h1>
-    <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
+    <h1 class="chart-title">Donut chart</h1>
+    <apexcharts v-if="msg" class="chart" type="donut" height="350" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
-  name: 'Chart',
+  name: 'DonutChart',
   info:Array,
   props:{
     msg:String
@@ -21,26 +21,20 @@ var obj = {
    
     return {
       chartOptions: {
+        labels: ['1991', '1992', '1993', '1994', '1995', '1996'],
         chart: {
-          id: 'basic-bar'
+          id: 'donut'
         },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996]
-        }
+      
       },
-      series: [{
-        name: x,
-        data: this.msg
-      }]
+      series: [1991, 1992, 1993, 1994, 1995, 1996]
     }
   },
   methods: {
     async updateChart() {   
       console.log("refrescanding", this.msg);
-        this.series = [{
-          name: x,
-          data: await this.info
-        }]
+        this.series = await this.info
+        
       }
   }
   ,
