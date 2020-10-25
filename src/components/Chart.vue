@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="chart-container">
     <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
-  <button @click="updateChart">Refresca!</button>
   </div>
 </template>
 
@@ -71,9 +70,14 @@ var x = "grafico culiao"
 </script>
 
 <style scoped>
+  .chart-container{
+    width: 100%;
+    display: block;
+  }
+
   .chart{
     width: 90%;
-    margin-left:10%;
+    margin-left:5%;
     padding: 0%;    
   }
 
