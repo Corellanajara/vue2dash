@@ -1,5 +1,6 @@
 <template>
   <div class="chart-container">
+    <h1 class="chart-title">hola</h1>
     <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
@@ -35,7 +36,7 @@ var obj = {
   },
   methods: {
     async updateChart() {   
-      console.log("refrescanding", this.msg)     ;
+      console.log("refrescanding", this.msg);
         this.series = [{
           name: x,
           data: await this.info
@@ -70,9 +71,20 @@ var x = "grafico culiao"
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
   .chart-container{
     width: 100%;
     display: block;
+  }
+
+  .chart-title{
+    width:100%;
+    padding: 0%;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
   }
 
   .chart{

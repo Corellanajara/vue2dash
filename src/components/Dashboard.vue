@@ -1,7 +1,9 @@
 <template>
   <div class="dashboard-container">
-    <div class="card-container" v-for="element of elements" v-bind:key="element">
-        <chart-app class="prueba" :msg="element.name"></chart-app> 
+    <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element">
+        <chart-app class="prueba" :msg="element.name" v-if="element.type == 'chart'"></chart-app>
+        <h1 v-if="element.type == 'text'">{{element.name}}</h1>
+        <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
   </div>
 </template>
@@ -15,7 +17,16 @@ export default {
     textoculiao: String,
   },
   data: function (){
-      return {elements:[{name:'charmander'},{name:'charmeleon'},{name:'pikachu'},{name:'charizard'}]};
+      return {elements:[{name:'charmander',size:'bigger',type:'chart',chart:''},
+                        {name:'charmeleon',size:'medium',type:'chart',chart:''},
+                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},          {name:'charmeleon',size:'big',type:'chart',chart:''},                        
+                        {name:'charizard',size:'small',type:'text',chart:''},
+]};
   },
   components: {
     'chart-app':Chart,
@@ -31,14 +42,55 @@ export default {
     width: 100%;
 }
 
-.card-container{
-    width: 45%;
-    padding-top:2.5%;
+.small{
+    width: 20%;
+    padding-top:1%;
     padding-bottom: 2.5;
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-top: 3%;
+    margin-bottom: 2.5%;
     height: auto;
+    display: inline-flex;
+    border-radius:5px;
+    background:white;
+}
+
+.medium{
+    width: 45%;
+    padding-top:1%;
+    padding-bottom: 2.5;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 3%;
+    margin-bottom: 2.5%;
+    height: auto;
+    display: inline-flex;
+    border-radius:5px;
+    background:white;
+}
+
+.big{
+     width: 65%;
+    padding-top:1%;
+    padding-bottom: 2.5;
+    margin-left: 17.5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    margin-bottom: 2.5%;
+    display: inline-flex;
+    border-radius:5px;
+    background:white; 
+}
+
+.bigger{
+    width: 90%;
+    padding-top:1%;
+    padding-bottom: 2.5;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    margin-bottom: 2.5%;
     display: inline-flex;
     border-radius:5px;
     background:white;
