@@ -17,7 +17,6 @@
 
 <script>
 
-import Chart from './components/Chart.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import CardCustom from './components/CardCustom.vue'
 import MailCard from './components/MailCard.vue'
@@ -38,7 +37,6 @@ export default {
   ,
   components: {
     'hello-app':HelloWorld,
-    'chart-app':Chart,
     'card-app':CardCustom,
     'mail-app':MailCard,
     'dashboard-app':Dashboard,

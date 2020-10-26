@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">Progress chart</h1>
-    <apexcharts v-if="msg" class="chart" type="radialBar" height='350' :options="chartOptions" :series="series"></apexcharts>
+    <h1 class="chart-title">hola</h1>
+    <apexcharts v-if="msg" class="chart" type="area" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -9,10 +9,10 @@
 import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
-  name: 'ProgressChart',
+  name: 'SparklineChart',
   info:Array,
   props:{
-    msg:String
+    msg:Array
   },
   components: {
     apexcharts: VueApexCharts,
@@ -21,22 +21,30 @@ var obj = {
    
     return {
       chartOptions: {
-        labels: ['Progreso'],
         chart: {
-          id: 'radialBar'
+          id: 'area', 
+          sparkline: {
+            enabled: true
+          }
         },
-      
+        xaxis: {
+          categories: [1991, 1992, 1993, 1994, 1995, 1996]
+        }
       },
-      series: [50]
+      series: [{
+        name: x,
+        data: this.msg
+      }]
     }
-  }, 
+  },
   methods: {
     async updateChart() {   
-        this.series = [73];
-        
+        this.series = [{
+          name: x,
+          data: await this.info
+        }]
       }
-  }
-  ,
+  },
   created: function () {
        this.updateChart();
   },
@@ -57,17 +65,15 @@ var obj = {
   
 }
 export default obj;
-
+var x = "grafico culiao"
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-
   .chart-container{
     width: 100%;
     display: block;
   }
-
   .chart-title{
     width:100%;
     padding: 0%;
@@ -76,11 +82,9 @@ export default obj;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
   }
-
   .chart{
     width: 90%;
     margin-left:5%;
     padding: 0%;    
   }
-
 </style>

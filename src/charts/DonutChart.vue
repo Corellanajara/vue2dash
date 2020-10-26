@@ -82,5 +82,4 @@ export default obj;
     margin-left:5%;
     padding: 0%;    
   }
-
 </style>

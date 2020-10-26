@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
     <h1 class="chart-title">hola</h1>
-    <apexcharts v-if="msg" class="chart" type="bar" :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts v-if="msg" class="chart" type="bar" height="350" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
-  name: 'Chart',
+  name: 'BarChart',
   info:Array,
   props:{
     msg:String
