@@ -4,8 +4,9 @@
         <bar-app class="prueba" :msg="element.name" v-if="element.type == 'bar'"></bar-app>
         <donut-app class="prueba" :msg="element.name" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" v-if="element.type == 'progress'"></progress-app>
+        <area-app class="prueba" :msg="element.name" v-if="element.type == 'area'"></area-app>
+        <polar-app class="prueba" :msg="element.name" v-if="element.type == 'polar'"></polar-app>
         <line-app class="prueba" :msg="element.name" v-if="element.type == 'line'"></line-app>        
-        <spark-app class="prueba" :msg="element.name" v-if="element.type == 'sparkline'"></spark-app> 
         <h1 v-if="element.type == 'text'">{{element.name}}</h1>
         <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
@@ -16,6 +17,8 @@
 import BarChart from '../charts/BarChart.vue'
 import DonutChart from '../charts/DonutChart.vue'
 import ProgressChart from '../charts/ProgressChart.vue'
+import AreaChart from '../charts/AreaChart.vue'
+import PolarChart from '../charts/PolarChart.vue'
 import LineChart from '../charts/LineChart.vue'
 import SparklineChart from '../charts/SparklineChart.vue'
 
@@ -29,6 +32,8 @@ export default {
                         {name:'charmeleon',size:'medium',type:'bar',chart:''},
                         {name:'charmeleon',size:'medium',type:'donut',chart:'pie'},
                         {name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
+                        {name:'charmeleon',size:'medium',type:'area',chart:'pie'},
+                        {name:'charmeleon',size:'medium',type:'polar',chart:'pie'},
                         {name:'charmeleon',size:'medium',type:'line',chart:'line'},                        
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
@@ -41,6 +46,8 @@ export default {
   components: {
     'donut-app':DonutChart,
     'progress-app':ProgressChart,
+    'area-app': AreaChart,
+    'polar-app' : PolarChart
     'line-app':LineChart,
     'spark-app':SparklineChart,
     'bar-app':BarChart
