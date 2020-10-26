@@ -4,6 +4,8 @@
         <chart-app class="prueba" :msg="element.name" v-if="element.type == 'chart'"></chart-app>
         <donut-app class="prueba" :msg="element.name" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" v-if="element.type == 'progress'"></progress-app>
+        <area-app class="prueba" :msg="element.name" v-if="element.type == 'area'"></area-app>
+        <polar-app class="prueba" :msg="element.name" v-if="element.type == 'polar'"></polar-app>
         <h1 v-if="element.type == 'text'">{{element.name}}</h1>
         <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
@@ -14,6 +16,8 @@
 import Chart from './Chart.vue'
 import DonutChart from '../charts/DonutChart.vue'
 import ProgressChart from '../charts/ProgressChart.vue'
+import AreaChart from '../charts/AreaChart.vue'
+import PolarChart from '../charts/PolarChart.vue'
 
 export default {
   name: 'Dashboard',
@@ -25,8 +29,8 @@ export default {
                         {name:'charmeleon',size:'medium',type:'chart',chart:''},
                         {name:'charmeleon',size:'bigger',type:'donut',chart:'pie'},
                         {name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {name:'charmeleon',size:'medium',type:'area',chart:'pie'},
+                        {name:'charmeleon',size:'medium',type:'polar',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},          {name:'charmeleon',size:'big',type:'chart',chart:''},                        
                         {name:'charizard',size:'small',type:'text',chart:''},
@@ -36,6 +40,8 @@ export default {
     'chart-app':Chart,
     'donut-app':DonutChart,
     'progress-app':ProgressChart,
+    'area-app': AreaChart,
+    'polar-app' : PolarChart
   }
 }
 
