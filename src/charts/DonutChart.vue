@@ -32,12 +32,10 @@ var obj = {
   },
   methods: {
     async updateChart() {   
-      console.log("refrescanding", this.msg);
-        this.series = await this.info
+      this.series = await this.info
         
-      }
-  }
-  ,
+    }
+  },
   created: function () {
        this.updateChart();
   },
@@ -45,22 +43,20 @@ var obj = {
     
     axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
     .then(response => {
-      console.log(response);
       var stats = response.data.stats
       var realStats = [];
       for(var stat of stats){
         
         realStats.push(stat['base_stat']);
       }
-      console.log(realStats);
       this.info = realStats;
       this.updateChart();
       })
   }
   
 }
+
 export default obj;
-var x = "grafico culiao"
 
 </script>
 
@@ -86,5 +82,4 @@ var x = "grafico culiao"
     margin-left:5%;
     padding: 0%;    
   }
-
 </style>
