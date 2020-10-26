@@ -4,6 +4,7 @@
         <chart-app class="prueba" :msg="element.name" v-if="element.type == 'chart'"></chart-app>
         <donut-app class="prueba" :msg="element.name" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" v-if="element.type == 'progress'"></progress-app>
+        <line-app class="prueba" :msg="element.name" v-if="element.type == 'line'"></line-app>        
         <h1 v-if="element.type == 'text'">{{element.name}}</h1>
         <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
@@ -14,6 +15,7 @@
 import Chart from './Chart.vue'
 import DonutChart from '../charts/DonutChart.vue'
 import ProgressChart from '../charts/ProgressChart.vue'
+import LineChart from '../charts/LineChart.vue'
 
 export default {
   name: 'Dashboard',
@@ -25,6 +27,7 @@ export default {
                         {name:'charmeleon',size:'medium',type:'chart',chart:''},
                         {name:'charmeleon',size:'bigger',type:'donut',chart:'pie'},
                         {name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
+                        {name:'charmeleon',size:'medium',type:'line',chart:'line'},                        
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
                         {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
@@ -36,6 +39,7 @@ export default {
     'chart-app':Chart,
     'donut-app':DonutChart,
     'progress-app':ProgressChart,
+    'line-app':LineChart
   }
 }
 
