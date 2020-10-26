@@ -1,9 +1,10 @@
 <template>  
     <ul id="demo">
-        <li v-for="mensaje of msg" >
+      <!--
+        <li v-for="mensaje of msg">
             {{mensaje.base_stat}}
-        </li>
-    </ul>  
+        </li> -->   
+    </ul>
 </template>
 
 <script>
@@ -13,7 +14,7 @@ export default {
     msg: Array
   }
 }
-console.log("no cacho na");
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

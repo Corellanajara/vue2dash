@@ -36,7 +36,6 @@ var obj = {
   },
   methods: {
     async updateChart() {   
-      console.log("refrescanding", this.msg);
         this.series = [{
           name: x,
           data: await this.info
@@ -51,14 +50,12 @@ var obj = {
     
     axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
     .then(response => {
-      console.log(response);
       var stats = response.data.stats
       var realStats = [];
       for(var stat of stats){
         
         realStats.push(stat['base_stat']);
       }
-      console.log(realStats);
       this.info = realStats;
       this.updateChart();
       })

@@ -47,7 +47,7 @@ export default {
     'donut-app':DonutChart,
     'progress-app':ProgressChart,
     'area-app': AreaChart,
-    'polar-app' : PolarChart
+    'polar-app' : PolarChart,
     'line-app':LineChart,
     'spark-app':SparklineChart,
     'bar-app':BarChart
