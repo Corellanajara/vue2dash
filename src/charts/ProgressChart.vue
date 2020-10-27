@@ -6,54 +6,39 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
   name: 'ProgressChart',
   info:Array,
   props:{
-    msg:String
+    msg:String,
+    dataSeries: Array,
+    dataLabels: Array,
   },
   components: {
     apexcharts: VueApexCharts,
+
   },
   data: function() {
    
     return {
       chartOptions: {
-        labels: ['Progreso'],
+        labels: this.dataLabels,
         chart: {
           id: 'radialBar'
         },
       
       },
-      series: [50]
+      series: this.dataSeries
     }
   }, 
   methods: {
-    async updateChart() {   
-        this.series = [73];
-        
-      }
   }
   ,
   created: function () {
-       this.updateChart();
+
   },
-  mounted() {
-    
-    axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
-    .then(response => {
-      var stats = response.data.stats
-      var realStats = [];
-      for(var stat of stats){
-        
-        realStats.push(stat['base_stat']);
-      }
-      this.info = realStats;
-      this.updateChart();
-      })
-  }
   
 }
 export default obj;

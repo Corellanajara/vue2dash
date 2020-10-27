@@ -1,18 +1,20 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">hola</h1>
-    <apexcharts v-if="msg" class="chart" type="area" heigth="50" :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts v-if="msg" class="chart" heigth="50" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
   name: 'SparklineChart',
   info:Array,
   props:{
-    msg:String
+    msg:String,
+    dataSeries: Array,
+    sparklineType: String,
+    chartTitle:String,
+    chartSubtitle:String,
   },
   components: {
     apexcharts: VueApexCharts,
@@ -21,50 +23,44 @@ var obj = {
     return {
       chartOptions: {
         chart: {
-          id: 'area', 
+          type: this.sparklineType, 
           sparkline: {
             enabled: true
           }
         },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996]
-        }
+        title: {
+              text: this.chartTitle,
+              offsetX: 0,
+              style: {
+                fontSize: '24px',
+              }
+        },
+        subtitle: {
+              text: this.chartSubtitle,
+              offsetX: 0,
+              style: {
+                fontSize: '14px',
+              }
+            }
       },
       series: [{
-        name: x,
-        data: this.msg
-      }]
+        name: this.msg,
+        data: this.dataSeries
+      }],
+
     }
   },
   methods: {
-    async updateChart() {   
-        this.series = [{
-          name: x,
-          data: await this.info
-        }]
-      }
+
   },
   created: function () {
-       this.updateChart();
+
   },
-  mounted() {
-    
-    axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
-    .then(response => {
-      var stats = response.data.stats
-      var realStats = [];
-      for(var stat of stats){
-        
-        realStats.push(stat['base_stat']);
-      }
-      this.info = realStats;
-      this.updateChart();
-      })
-  }
+
   
 }
 export default obj;
-var x = "grafico culiao"
+var x = "Sparkline"
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">{{title}}</h1>
+    <h1 class="chart-title">Polar Chart</h1>
     <apexcharts class="chart" type="polarArea" height="300" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
@@ -13,18 +13,20 @@ var obj = {
   info:Array,
   props:{
     title: String,
-    seriesData: Array,
+    dataSeries: Array,
+    dataLabels:Array
   },
   components: {
     apexcharts: VueApexCharts,
   },
   data: function() {
     return {
-      series: this.seriesData,
-          chartOptions: {
+      series: this.dataSeries,
+      chartOptions: {
             chart: {
               type: 'polarArea',
             },
+            labels:this.dataLabels,
             stroke: {
               colors: ['#fff']
             },

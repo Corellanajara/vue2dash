@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">hola</h1>
+    <h1 class="chart-title">Line Chart</h1>
     <apexcharts class="chart" height='300' type="line" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
@@ -22,7 +22,7 @@ var obj = {
     return {
       chartOptions: {
         chart: {
-          id: 'line', 
+          type: 'line', 
         },
         xaxis: {
           categories: this.xaxisCategories
@@ -37,7 +37,7 @@ var obj = {
 }
 
 export default obj;
-var x = "grafico culiao"
+var x = "Line Chart"
 </script>
 
 <style scoped>

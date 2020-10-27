@@ -6,13 +6,14 @@
 </template>
 
 <script>
-import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
   name: 'DonutChart',
   info:Array,
   props:{
-    msg:String
+    msg:String,
+    dataSeries: Array,
+    dataLabels: Array,
   },
   components: {
     apexcharts: VueApexCharts,
@@ -21,38 +22,21 @@ var obj = {
    
     return {
       chartOptions: {
-        labels: ['1991', '1992', '1993', '1994', '1995', '1996'],
+        labels: this.dataLabels,
         chart: {
-          id: 'donut'
+          id: 'donut',
         },
       
       },
-      series: [1991, 1992, 1993, 1994, 1995, 1996]
+      series: this.dataSeries
     }
   },
   methods: {
-    async updateChart() {   
-      this.series = await this.info
-        
-    }
+
   },
   created: function () {
-       this.updateChart();
   },
-  mounted() {
-    
-    axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
-    .then(response => {
-      var stats = response.data.stats
-      var realStats = [];
-      for(var stat of stats){
-        
-        realStats.push(stat['base_stat']);
-      }
-      this.info = realStats;
-      this.updateChart();
-      })
-  }
+
   
 }
 

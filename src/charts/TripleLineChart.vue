@@ -1,21 +1,19 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">Area Chart</h1>
-    <apexcharts v-if="msg" class="chart" type="area" height="300" :options="chartOptions" :series="series"></apexcharts>
+    <h1 class="chart-title">Triple line chart</h1>
+    <apexcharts class="chart" height='300' type="line" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
 <script>
-
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
-  name: 'AreaChart',
+  name: 'TripleLineChart',
   info:Array,
   props:{
-    msg:String,
-    title: String,
-    subtitle: String,
+    xaxisCategories: Array,
     dataSeries: Array,
+    title:String,
   },
   components: {
     apexcharts: VueApexCharts,
@@ -23,65 +21,49 @@ var obj = {
   data: function() {
    
     return {
-      chartOptions: {
-        chart: {
-              type: 'area',
+      series: this.dataSeries,
+          chartOptions: {
+            chart: {
+              height: 350,
+              type: 'line',
               zoom: {
                 enabled: false
-              }
+              },
             },
             dataLabels: {
-              enabled: true
+              enabled: false
             },
             stroke: {
-              curve: 'straight'
+              width: [5, 7, 5],
+              curve: 'straight',
+              dashArray: [0, 8, 5]
             },
-
             title: {
               text: this.title,
               align: 'left'
             },
-            subtitle: {
-              text: this.subtitle,
-              align: 'left'
-            },
-            labels: [1,2,3,4,5,6,7],
             xaxis: {
-              type: 'datetime',
+              categories:this.xaxisCategories
             },
-            yaxis: {
-              opposite: true
+            grid: {
+              borderColor: '#f1f1f1',
             },
-            legend: {
-              horizontalAlign: 'left'
-            }
-      },
-      series: [{
-        name: x,
-        data: this.dataSeries
-      }]
+            
+          }
     }
-  },
-  methods: {
   }
-  ,
-  created: function () {
-
-  },
 }
-export default obj;
-var x = "Area chart"
 
+export default obj;
+var x = "Triple line chart"
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-
   .chart-container{
     width: 100%;
     display: block;
   }
-
   .chart-title{
     width:100%;
     padding: 0%;
@@ -90,11 +72,9 @@ var x = "Area chart"
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
   }
-
   .chart{
     width: 90%;
     margin-left:5%;
     padding: 0%;    
   }
-
 </style>
