@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">Area Chart</h1>
-    <apexcharts v-if="msg" class="chart" type="polarArea" height="300" :options="chartOptions" :series="series"></apexcharts>
+    <h1 class="chart-title">{{title}}</h1>
+    <apexcharts class="chart" type="polarArea" height="300" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -9,17 +9,18 @@
 
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
-  name: 'Polar Chart',
+  name: 'PolarChart',
   info:Array,
   props:{
-    msg:String
+    title: String,
+    seriesData: Array,
   },
   components: {
     apexcharts: VueApexCharts,
   },
   data: function() {
     return {
-      series: [1,2,3,23,12,56,73],
+      series: this.seriesData,
           chartOptions: {
             chart: {
               type: 'polarArea',
@@ -34,7 +35,10 @@ var obj = {
     }
   }
 }
+
 export default obj;
+
+
 
 </script>
 

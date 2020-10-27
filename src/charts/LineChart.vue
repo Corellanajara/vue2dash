@@ -1,18 +1,18 @@
 <template>
   <div class="chart-container">
     <h1 class="chart-title">hola</h1>
-    <apexcharts v-if="msg" class="chart" height='300' type="line" :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts class="chart" height='300' type="line" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import VueApexCharts from 'vue-apexcharts'
 var obj = {
   name: 'LineChart',
   info:Array,
   props:{
-    msg:String
+    xaxisCategories: Array,
+    dataSeries: Array, 
   },
   components: {
     apexcharts: VueApexCharts,
@@ -25,42 +25,17 @@ var obj = {
           id: 'line', 
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996]
+          categories: this.xaxisCategories
         }
       },
       series: [{
         name: x,
-        data: this.msg
+        data: this.dataSeries
       }]
     }
-  },
-  methods: {
-    async updateChart() {   
-        this.series = [{
-          name: x,
-          data: await this.info
-        }]
-      }
-  },
-  created: function () {
-       this.updateChart();
-  },
-  mounted() {
-    
-    axios.get("https://pokeapi.co/api/v2/pokemon/"+this.msg)
-    .then(response => {
-      var stats = response.data.stats
-      var realStats = [];
-      for(var stat of stats){
-        
-        realStats.push(stat['base_stat']);
-      }
-      this.info = realStats;
-      this.updateChart();
-      })
   }
-  
 }
+
 export default obj;
 var x = "grafico culiao"
 </script>

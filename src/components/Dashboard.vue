@@ -2,12 +2,15 @@
   <div class="dashboard-container">
     <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element.id">
         <bar-app class="prueba" :msg="element.name" v-if="element.type == 'bar'"></bar-app>
+        
         <donut-app class="prueba" :msg="element.name" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" v-if="element.type == 'progress'"></progress-app>
+        
         <area-app class="prueba" :msg="element.name" v-if="element.type == 'area'"></area-app>
         <spark-app class="prueba" :msg="element.name" v-if="element.type == 'sparkline'"></spark-app>
-        <polar-app class="prueba" :msg="element.name" v-if="element.type == 'polar'"></polar-app>
-        <line-app class="prueba" :msg="element.name" v-if="element.type == 'line'"></line-app>        
+        
+        <polar-app class="prueba" :title="element.title" :seriesData="element.series" v-if="element.type == 'polar'"></polar-app>
+        <line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" v-if="element.type == 'line'"></line-app>        
     </div>
   </div>
 </template>
@@ -28,29 +31,29 @@ export default {
   },
   data: function (){
       return {elements:[
-                        {id:1,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {id:2,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {id:3,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {id:4,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},           
+                        {id:1,name:'charmeleon',size:'small',type:'sparkline'},
+                        {id:2,name:'charmeleon',size:'small',type:'sparkline'},
+                        {id:3,name:'charmeleon',size:'small',type:'sparkline'},
+                        {id:4,name:'charmeleon',size:'small',type:'sparkline'},           
                         {id:5,name:'charmeleon',size:'bigger',type:'bar',chart:''},
                         {id:6,name:'charmeleon',size:'bigger',type:'donut',chart:'pie'},
                         {id:7,name:'charmeleon',size:'bigger',type:'progress',chart:'pie'},
                         {id:8,name:'charmeleon',size:'bigger',type:'area',chart:'pie'},
-                        {id:9,name:'charmeleon',size:'bigger',type:'polar',chart:'pie'},
-                        {id:10,name:'charmeleon',size:'bigger',type:'line',chart:'line'},
+                        {id:9,name:'charmeleon',size:'bigger',type:'polar',title:'caca',series:[1,2,3,4]},
+                        {id:10,name:'charmeleon',size:'bigger',type:'line',series:[1,2,3,4,5],categories:['uno','dos','tres','cuatro','cinco']},
                         {id:11,name:'charmander',size:'bigger',type:'bar',chart:''},
                         {id:12,name:'charmeleon',size:'big',type:'bar',chart:''},
                         {id:13,name:'charmeleon',size:'big',type:'donut',chart:'pie'},
                         {id:14,name:'charmeleon',size:'big',type:'progress',chart:'pie'},
                         {id:15,name:'charmeleon',size:'big',type:'area',chart:'pie'},
-                        {id:16,name:'charmeleon',size:'big',type:'polar',chart:'pie'},
-                        {id:17,name:'charmeleon',size:'big',type:'line',chart:'line'},                         
+                        {id:16,name:'charmeleon',size:'big',type:'polar',title:'pichi',series:[1,2,3,4]},
+                        {id:17,name:'charmeleon',size:'bigger',type:'line',series:[1,2,3,4,5],categories:['uno','dos','tres','cuatro','cinco']},                      
                         {id:18,name:'charmeleon',size:'medium',type:'bar',chart:''},
                         {id:19,name:'charmeleon',size:'medium',type:'donut',chart:'pie'},
                         {id:20,name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
                         {id:21,name:'charmeleon',size:'medium',type:'area',chart:'pie'},
-                        {id:22,name:'charmeleon',size:'medium',type:'polar',chart:'pie'},
-                        {id:23,name:'charmeleon',size:'medium',type:'line',chart:'line'}       
+                        {id:22,name:'charmeleon',size:'medium',type:'polar',title:'pichi',series:[1,2,3,4]},
+                        {id:23,name:'charmeleon',size:'medium',type:'line',series:[1,2,3,4,5],categories:['uno','dos','tres','cuatro','cinco']},     
 ]};
   },
   components: {

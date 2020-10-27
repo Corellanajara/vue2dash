@@ -18,7 +18,6 @@ var obj = {
     apexcharts: VueApexCharts,
   },
   data: function() {
-   
     return {
       chartOptions: {
         chart: {
