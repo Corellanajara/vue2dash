@@ -1,14 +1,13 @@
 <template>
   <div class="dashboard-container">
-    <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element">
+    <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element.id">
         <bar-app class="prueba" :msg="element.name" v-if="element.type == 'bar'"></bar-app>
         <donut-app class="prueba" :msg="element.name" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" v-if="element.type == 'progress'"></progress-app>
         <area-app class="prueba" :msg="element.name" v-if="element.type == 'area'"></area-app>
+        <spark-app class="prueba" :msg="element.name" v-if="element.type == 'sparkline'"></spark-app>
         <polar-app class="prueba" :msg="element.name" v-if="element.type == 'polar'"></polar-app>
         <line-app class="prueba" :msg="element.name" v-if="element.type == 'line'"></line-app>        
-        <h1 v-if="element.type == 'text'">{{element.name}}</h1>
-        <h2 v-if="element.type == 'value'">{{element.color}}</h2>
     </div>
   </div>
 </template>
@@ -28,19 +27,30 @@ export default {
     textoculiao: String,
   },
   data: function (){
-      return {elements:[{name:'charmander',size:'bigger',type:'bar',chart:''},
-                        {name:'charmeleon',size:'medium',type:'bar',chart:''},
-                        {name:'charmeleon',size:'medium',type:'donut',chart:'pie'},
-                        {name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
-                        {name:'charmeleon',size:'medium',type:'area',chart:'pie'},
-                        {name:'charmeleon',size:'medium',type:'polar',chart:'pie'},
-                        {name:'charmeleon',size:'medium',type:'line',chart:'line'},                        
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
-                        {name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},          
-                        {name:'charmeleon',size:'big',type:'bar',chart:''},                    
-                        {name:'charizard',size:'small',type:'text',chart:''},
+      return {elements:[
+                        {id:1,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {id:2,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {id:3,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},
+                        {id:4,name:'charmeleon',size:'small',type:'sparkline',chart:'pie'},           
+                        {id:5,name:'charmeleon',size:'bigger',type:'bar',chart:''},
+                        {id:6,name:'charmeleon',size:'bigger',type:'donut',chart:'pie'},
+                        {id:7,name:'charmeleon',size:'bigger',type:'progress',chart:'pie'},
+                        {id:8,name:'charmeleon',size:'bigger',type:'area',chart:'pie'},
+                        {id:9,name:'charmeleon',size:'bigger',type:'polar',chart:'pie'},
+                        {id:10,name:'charmeleon',size:'bigger',type:'line',chart:'line'},
+                        {id:11,name:'charmander',size:'bigger',type:'bar',chart:''},
+                        {id:12,name:'charmeleon',size:'big',type:'bar',chart:''},
+                        {id:13,name:'charmeleon',size:'big',type:'donut',chart:'pie'},
+                        {id:14,name:'charmeleon',size:'big',type:'progress',chart:'pie'},
+                        {id:15,name:'charmeleon',size:'big',type:'area',chart:'pie'},
+                        {id:16,name:'charmeleon',size:'big',type:'polar',chart:'pie'},
+                        {id:17,name:'charmeleon',size:'big',type:'line',chart:'line'},                         
+                        {id:18,name:'charmeleon',size:'medium',type:'bar',chart:''},
+                        {id:19,name:'charmeleon',size:'medium',type:'donut',chart:'pie'},
+                        {id:20,name:'charmeleon',size:'medium',type:'progress',chart:'pie'},
+                        {id:21,name:'charmeleon',size:'medium',type:'area',chart:'pie'},
+                        {id:22,name:'charmeleon',size:'medium',type:'polar',chart:'pie'},
+                        {id:23,name:'charmeleon',size:'medium',type:'line',chart:'line'}       
 ]};
   },
   components: {
@@ -59,7 +69,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .dashboard-container{
-    background: #dedede;
+    background: #e6e9f8;
     width: 100%;
 }
 
@@ -71,24 +81,44 @@ export default {
     margin-right: 2.5%;
     margin-top: 3%;
     margin-bottom: 2.5%;
-    height: auto;
+    height: 30%;
     display: inline-flex;
     border-radius:5px;
     background:white;
+    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  transition: .5s;
+  cursor:pointer;
+}
+
+.small:hover{
+  transform: scale(1.1);
+  transition: .5s;
 }
 
 .medium{
-    width: 45%;
+    width: 40%;
     padding-top:1%;
     padding-bottom: 2.5;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-top: 3%;
     margin-bottom: 2.5%;
     height: auto;
     display: inline-flex;
     border-radius:5px;
     background:white;
+    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  transition: .5s;
+  cursor:pointer;
+}
+
+.medium:hover{
+  transform: scale(1.1);
+  transition: .5s;
 }
 
 .big{
@@ -101,22 +131,41 @@ export default {
     margin-bottom: 2.5%;
     display: inline-flex;
     border-radius:5px;
-    background:white; 
+    background:white;
+    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  transition: .5s;
+  cursor:pointer;
+}
+
+.big:hover{
+  transform: scale(1.1);
+  transition: .5s;
 }
 
 .bigger{
-    width: 90%;
+    width: 80%;
     padding-top:1%;
     padding-bottom: 2.5;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 3%;
     margin-bottom: 2.5%;
     display: inline-flex;
     border-radius:5px;
     background:white;
+    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+    box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  transition: .5s;
+  cursor:pointer;
 }
 
+.bigger:hover{
+  transform: scale(1.1);
+  transition: .5s;
+}
 .prueba{
     width:90%;
     margin-left: 5%;

@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
     <h1 class="chart-title">Progress chart</h1>
-    <apexcharts v-if="msg" class="chart" type="radialBar" height='350' :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts v-if="msg" class="chart" type="radialBar" height='300' :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 

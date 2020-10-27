@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
     <h1 class="chart-title">hola</h1>
-    <apexcharts v-if="msg" class="chart" type="area" :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts v-if="msg" class="chart" type="area" heigth="50" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ var obj = {
   name: 'SparklineChart',
   info:Array,
   props:{
-    msg:Array
+    msg:String
   },
   components: {
     apexcharts: VueApexCharts,

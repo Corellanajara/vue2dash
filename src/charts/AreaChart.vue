@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
     <h1 class="chart-title">Area Chart</h1>
-    <apexcharts v-if="msg" class="chart" type="area" :options="chartOptions" :series="series"></apexcharts>
+    <apexcharts v-if="msg" class="chart" type="area" height="300" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
 
@@ -23,7 +23,6 @@ var obj = {
       chartOptions: {
         chart: {
               type: 'area',
-              height: 350,
               zoom: {
                 enabled: false
               }
