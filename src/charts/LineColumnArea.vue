@@ -21,7 +21,7 @@ var obj = {
     apexcharts: VueApexCharts,
   },
   data: function() {
-   
+
     return {
         series: this.dataSeries,
           chartOptions: {
@@ -39,7 +39,7 @@ var obj = {
                 columnWidth: '50%'
               }
             },
-            
+
             fill: {
               opacity: [0.85, 0.25, 1],
               gradient: {
@@ -65,7 +65,7 @@ var obj = {
               min: 0
             },
           }
-      
+
     }
   },
   methods: {
@@ -73,11 +73,11 @@ var obj = {
   ,
   created: function () {
   },
-  
-  
+
+
 }
 export default obj;
-var x = "Line Column Area  "
+
 
 </script>
 
@@ -101,7 +101,7 @@ var x = "Line Column Area  "
   .chart{
     width: 90%;
     margin-left:5%;
-    padding: 0%;    
+    padding: 0%;
   }
 
 </style>

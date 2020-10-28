@@ -23,7 +23,7 @@ var obj = {
     return {
       chartOptions: {
         chart: {
-          type: this.sparklineType, 
+          type: this.sparklineType,
           sparkline: {
             enabled: true
           }
@@ -57,10 +57,10 @@ var obj = {
 
   },
 
-  
+
 }
 export default obj;
-var x = "Sparkline"
+
 </script>
 
 <style scoped>
@@ -80,6 +80,6 @@ var x = "Sparkline"
   .chart{
     width: 90%;
     margin-left:5%;
-    padding: 0%;    
+    padding: 0%;
   }
 </style>

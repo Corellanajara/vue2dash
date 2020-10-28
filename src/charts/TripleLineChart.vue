@@ -19,7 +19,7 @@ var obj = {
     apexcharts: VueApexCharts,
   },
   data: function() {
-   
+
     return {
       series: this.dataSeries,
           chartOptions: {
@@ -48,14 +48,14 @@ var obj = {
             grid: {
               borderColor: '#f1f1f1',
             },
-            
+
           }
     }
   }
 }
 
 export default obj;
-var x = "Triple line chart"
+
 </script>
 
 <style scoped>
@@ -75,6 +75,6 @@ var x = "Triple line chart"
   .chart{
     width: 90%;
     margin-left:5%;
-    padding: 0%;    
+    padding: 0%;
   }
 </style>
