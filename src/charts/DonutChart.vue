@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">Donut chart</h1>
+    <h1 class="chart-title">{{msg}}</h1>
     <apexcharts v-if="msg" class="chart" type="donut" height="300" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>

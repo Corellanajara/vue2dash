@@ -2,12 +2,12 @@
   <div class="dashboard-container">
     
     <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element.id">
-        <text-card-app :cardTitle="element.title" :cardSubtitle="element.subtitle" v-if="element.type == 'textCard'"></text-card-app>
+        <text-card-app :msg="element.name" v-if="element.type == 'textCard'"></text-card-app>
 
-        <bar-app class="prueba" :msg="element.name" :xaxisCategories="element.categories" :dataSeries="element.series" v-if="element.type == 'bar'"></bar-app>
+        <bar-app class="prueba" :msg="element.name" :xaxisCategories="namesByMonth" :dataSeries="valuesByMonth" v-if="element.type == 'bar'  && valuesByMonth"></bar-app>
         <donut-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'progress'"></progress-app>
-        <area-app class="prueba" :msg="element.name" :title="element.title" :subtitle="element.subtitle" :dataSeries="element.series" v-if="element.type == 'area'"></area-app>
+        <area-app class="prueba" :msg="element.name" :title="element.title" :subtitle="element.subtitle" :dataSeries="element.series" v-if="element.type == 'area' "></area-app>
         <spark-app class="prueba" :msg="element.name" :dataSeries="element.series" :sparklineType="element.sparklineType" :chartTitle="element.title" :chartSubtitle="element.subtitle" v-if="element.type == 'sparkline'"></spark-app>
         <mixed-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" :yaxisTitle="element.yTitle" v-if="element.type == 'mixed'"></mixed-app>
         <polar-app class="prueba" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'polar'"></polar-app>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import BarChart from '../charts/BarChart.vue'
 import DonutChart from '../charts/DonutChart.vue'
 import ProgressChart from '../charts/ProgressChart.vue'
@@ -27,21 +28,86 @@ import LineChart from '../charts/LineChart.vue'
 import SparklineChart from '../charts/SparklineChart.vue'
 import LineColumnArea from '../charts/LineColumnArea.vue'
 import TripleLineChart from '../charts/TripleLineChart.vue'
-import TextCard from './TextCard'
+import TextCard from './CardCustom'
 
 
 export default {
   name: 'Dashboard',
+  errored : false,
+  loading : false,      
+  
+
   props: {
     textoculiao: String,
   },
+  methods:{
+    
+  },
+  mounted () {
+    axios
+      .get('http://201.239.15.63:5000/portalinmobiliario/')
+      .then(response => {
+        var datos = response.data                
+        var prices = [];
+        var dates = []
+        var rooms = []
+        datos.map(dato=>{     
+          var newdate = new Date(dato.date);
+            var date = newdate.toLocaleString();
+            var month = newdate.getMonth() +"-"+ newdate.getFullYear()            
+            if(!this.byDates[date]){
+              this.byDates[date] = []
+            }
+            if(!this.byMonths[month]){
+              this.byMonths[month] = []
+            }
+            dato.price = dato.price.replaceAll(".","")               
+            this.byDates[date].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})            
+            this.byMonths[month].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})                        
+
+            if(month == "9-2020"){
+              if(!rooms[dato.Dormitorios||'No Informa']){
+                rooms[dato.Dormitorios||'No Informa'] = 0;
+              }
+              rooms[dato.Dormitorios||'No Informa'] = rooms[dato.Dormitorios||'No Informa'] + 1;
+              prices.push(parseInt(dato.price));
+              dates.push(newdate.toLocaleDateString())
+            }
+            
+        })        
+        this.valuesByMonth = [];        
+        this.namesByMonth = [];
+        for(var mon of Object.keys( this.byMonths) ){            
+            this.valuesByMonth.push(this.byMonths[mon].length)
+            this.namesByMonth.push(mon)      
+        }
+   //     console.log("names",this.namesByMonth)
+    //    console.log("values",this.valuesByMonth)
+        this.elements.push(
+          {id:5,name:'Cantidad por Mes',size:'bigger',type:'bar',series:this.valuesByMonth,categories:this.namesByMonth},
+          {id:13,name:'charmeleon',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
+          {id:13,name:'Cantidad de piezas por arriendo',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
+        )
+       
+      })      
+      .finally(() => this.loading = false)
+  },
+  
   data: function (){
-      return {elements:[
-                        {id:1,name:'charmeleon',size:'small',type:'textCard', title:'Titulos',subtitle:'Subtitulos'},
+      return {
+        valuesByMonth : [],
+        namesByMonth : [],
+        byDates : [],
+        byMonths : [],
+        commons : [],
+        prices : [],
+        titles : [],
+        elements:[                    
+        /*                        
                         {id:2,name:'charmeleon',size:'small',type:'sparkline',sparklineType:'bar', title:'Titulo', subtitle:'Subtitulo',series:[23, 11, 29, 50, 23, 12, 77, 51, 44, 22, 30]},
                         {id:3,name:'charmeleon',size:'small',type:'sparkline',sparklineType:'area', title:'Titulo', subtitle:'Subtitulo',series:[87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]},
                         {id:4,name:'charmeleon',size:'small',type:'sparkline',sparklineType:'line', title:'Titulo', subtitle:'Subtitulo', series:[35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]},           
-                        {id:5,name:'charmeleon',size:'bigger',type:'bar',series:[1,2,3,4,5],categories:['uno','dos','tres','cuatro','cinco']},
+                        
                         {id:6,name:'charmeleon',size:'bigger',type:'donut', series:[1,2,3,4,5,6,7,8], labels:['Area 1','Area 2','Area 3','Area 4','Area 5','Area 6','Area 7','Area 8']},
                         {id:7,name:'charmeleon',size:'bigger',type:'progress',series:[30], labels:['Progreso']},
                         {id:8,name:'charmeleon',size:'bigger',type:'area', title:"Titulo area chart", subtitle: "Subtitulo area chart", series:[78,80,35,20,28,46,87,90]},
@@ -103,7 +169,8 @@ export default {
                         {id:20,name:'charmeleon',size:'medium',type:'progress',series:[100], labels:['Progreso']},
                         {id:21,name:'charmeleon',size:'medium',type:'area', title:"Titulo area chart", subtitle: "Subtitulo area chart", series:[78,80,35,20,28,46,87,90]},
                         {id:22,name:'charmeleon',size:'medium',type:'polar',series:[20,50,90,120],labels:['Area 1','Area 2', 'Area 3','Area 4']},
-                        {id:23,name:'charmeleon',size:'medium',type:'line',series:[1,2,3,4,5],categories:['uno','dos','tres','cuatro','cinco']},     
+                        {id:23,name:'charmeleon',size:'medium',type:'line',series:[1,2,3,4,5],categories:['uno','dos','tres','cuatro','cinco']},
+                        */     
 ]};
   },
   components: {
