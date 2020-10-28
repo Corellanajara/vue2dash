@@ -55,7 +55,7 @@ var obj = {
 }
 
 export default obj;
-var x = "Triple line chart"
+
 </script>
 
 <style scoped>

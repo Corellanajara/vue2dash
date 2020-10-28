@@ -60,7 +60,7 @@ var obj = {
   
 }
 export default obj;
-var x = "Sparkline"
+
 </script>
 
 <style scoped>

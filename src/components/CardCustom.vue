@@ -1,17 +1,12 @@
 <template>  
-    <ul id="demo">
-      <!--
-        <li v-for="mensaje of msg">
-            {{mensaje.base_stat}}
-        </li> -->   
-    </ul>
+    <span>{{msg}}</span>
 </template>
 
 <script>
 export default {
   name: 'CardCustom',
   props: {
-    msg: Array
+    msg: String
   }
 }
 

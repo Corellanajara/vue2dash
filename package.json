@@ -5,6 +5,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-dashboard": "vue-cli-service build --target wc --name dashboard-app ./src/components/Dashboard.vue",
+    "build-card": "vue-cli-service build --target wc --name card-custom-app ./src/components/CardCustom.vue",
+    "build-area": "vue-cli-service build --target wc --name area-chart-app ./src/charts/AreaChart.vue",
+    "build-bar": "vue-cli-service build --target wc --name bar-chart-app ./src/charts/BarChart.vue",
+    "build-donut": "vue-cli-service build --target wc --name donut-chart-app ./src/charts/DonutChart.vue",
+    "build-line": "vue-cli-service build --target wc --name line-chart-app ./src/charts/LineChart.vue",
+    "build-line-column": "vue-cli-service build --target wc --name line-column-chart-app ./src/charts/LineColumnArea.vue",
+    "build-polar": "vue-cli-service build --target wc --name polar-chart-app ./src/charts/PolarChart.vue",
+    "build-progress": "vue-cli-service build --target wc --name progress-chart-app ./src/charts/ProgressChart.vue",
+    "build-spark": "vue-cli-service build --target wc --name spark-chart-app ./src/charts/SparklineChart.vue",
+    "build-triple": "vue-cli-service build --target wc --name triple-chart-app ./src/charts/TripleLineChart.vue",
+
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
