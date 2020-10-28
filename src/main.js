@@ -36,7 +36,7 @@ const routes = [
   { path: '/radialbar', component: RadialBarExample },
   { path: '/bubble', component: BubbleExample },
   { path: '/heatmap', component: HeatmapExample },
-  { path: '/line', component: LineExample }
+  { path: '/line', component: LineExample },
 ]
 
 const router = new VueRouter({
