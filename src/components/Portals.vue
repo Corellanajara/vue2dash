@@ -96,13 +96,11 @@ export default {
   name: 'TextCard',
     methods:{
       selectPortal: function(itemParam){
-
-      goToDashboard: function(){
-        this.$router.push({ path:'dashboard' });              
-      }  
-
         this.portal = itemParam
         console.log('item',itemParam.title)
+      },
+      goToDashboard: function(){
+        this.$router.push({ path:'dashboard' });              
       },
       activateModal: function(){
         this.showModal = !this.showModal
