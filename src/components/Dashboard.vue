@@ -12,22 +12,39 @@
         <triple-line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" :title="element.title" v-if="element.type == 'tripleLine'"></triple-line-app>
         <line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" v-if="element.type == 'line'"></line-app>        
     </div>
-    <button class="kc_fab_main_btn" @click="activateModal()">+</button>
+    <button class="kc_fab_main_btn" @click="activateModal()"><img class="image-fab-button" src="../assets/fab-button-mail.svg"></button>
    <div class="modal-overlay" v-if="showModal" @click="activateModal()"></div>
     <div class="modal" v-if="showModal">
-      <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-          <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-          <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-          <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-          <h1>Lorem Ipsum</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-      <button>
-        Close Modal
-      </button>
+      <div class="bar-modal">
+        <div class="container-bar-image">
+          <img class="bar-image" src="../assets/bar-logo.svg">
+        </div>
+      </div>
+      <div class="data-modal">
+        <h1 class="title-data">Envío de Información</h1>
+        <div>
+          <h1 class="text-data">Se enviará la información desde <br>el portal "x" en relación a la ciudad "x" </h1>
+        </div>
+        <div class="container-mail-image">
+          <img class="mail-image" src="../assets/mail.svg">
+        </div>
+        
+        <div>
+          <h1 class="title-data">Correo</h1>
+        </div>
+
+        <div>
+         <h1 class="text-data">Para enviar a un correo a más de una dirección  <br> se deben escribir los correos separados por coma (,) <br><br>Ejemplo: <br><br>correoejemplo1@ejemplo.com,correoejemplo2@ejemplo.com</h1>
+        </div>
+
+        <div class="input-box">
+            <input class="input" type="text" placeholder="Ingresar Correos">
+        </div>
+        
+        <button class="send-button">
+          Enviar Correo
+        </button>
+      </div>
     </div>    
   </div>
 </template>
@@ -263,7 +280,7 @@ export default {
 }
 
 .big{
-     width: 65%;
+    width: 65%;
     padding-top:1%;
     padding-bottom: 2.5;
     margin-left: 17.5%;
@@ -311,6 +328,7 @@ export default {
     width:90%;
     margin-left: 5%;
 }
+/* modal */
 
 .modal-overlay {
  position: fixed;
@@ -334,23 +352,124 @@ export default {
  max-height: 530px;
  background-color: #FFF;
  /*border-radius: 16px;*/
- padding: 25px;
-
 }
- 
- .modal h1 {
-  color: #222;
-  font-size: 32px;
-  font-weight: 900;
-  margin-bottom: 15px;
- }
- 
-  .modal p {
-  color: #666;
-  font-size: 18px;
+
+/*modal bar */
+
+.bar-modal{
+  width:100%;
+  margin-left:0%;
+  background:#070618;
+}
+
+.container-bar-image{
+  width: 70px;
+  padding-top:3%;
+  padding-bottom: 3%;
+  margin-left: calc(  (100% - 70px)/2);
+}
+
+.bar-image{
+  width: 90%;
+  margin-left: 5%;
+}
+
+/* modal data */
+
+.container-mail-image{
+  width: 80%;
+  margin-left: 10%;
+}
+
+.mail-image{
+  width: 40%;
+  margin-top: 8%;
+  margin-left: 30%;
+}
+
+.title-data{
+  text-align: center;
+  font-size: 24px;
+  margin-top: 4%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+.text-data{
+  text-align: center;
+  font-size: 18px;  
+  margin-top: 2%;  
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  margin-bottom: 15px;
- }
+}
+
+.sender-container{
+  width: 80%;
+  margin-left: 10%;
+}
+
+.mail-input{
+  width: 60%;
+  margin-top: 2.5%;
+  margin-left: 20%;
+}
+/* input de correos */
+
+.input-box{
+  background: #eeeeee;
+  width: 80%;
+  margin-top: 5%;
+  margin-left: 10%;
+  border-radius: 15px;
+}
+
+.input{
+  border: 0;
+  width: 90%;
+  margin-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: #eeeeee;
+  color: #252526;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+.input:active{
+  border: 0;
+}
+
+.input:focus{
+  outline: none;
+}
+
+/* boton de envio */
+
+.send-button{
+  font-family: "Roboto", sans-serif;
+  /* text-transform: uppercase; */
+  outline: 0;
+  background: #070618;
+  width: 60%;
+  height: 40px;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  margin-left: 20%;
+  border: 0;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition:.5s;
+}
+
+.send-button:hover{
+  transition: .5s;
+  transform: scale(1.1);
+}
+
+/* fab button */
 
 .kc_fab_main_btn{
   background-color:#070618;
@@ -377,4 +496,11 @@ export default {
   transition: .5s;
   transform: scale(1.2);
 }
+
+.image-fab-button{
+  margin-top: 10px;
+  width: 33px;
+  height: 30px;
+}
+
 </style>
