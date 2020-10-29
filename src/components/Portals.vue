@@ -38,6 +38,7 @@
           </div>
           <div class="buttons-container">
             <div class="button-container">
+              <!--<button class="login-button" v-on:click="goToDashboard">Ingresar</button>-->
               <button class="login-button" @click="activateModal()">Ingresar</button>
             </div>
             <div class="button-container">
@@ -95,6 +96,11 @@ export default {
   name: 'TextCard',
     methods:{
       selectPortal: function(itemParam){
+
+      goToDashboard: function(){
+        this.$router.push({ path:'dashboard' });              
+      }  
+
         this.portal = itemParam
         console.log('item',itemParam.title)
       },
