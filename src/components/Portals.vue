@@ -38,7 +38,8 @@
           </div>
           <div class="buttons-container">
             <div class="button-container">
-              <button class="login-button" v-on:click="goToDashboard">Ingresar</button>
+              <!--<button class="login-button" v-on:click="goToDashboard">Ingresar</button>-->
+              <button class="login-button" @click="activateModal()">Ingresar</button>
             </div>
             <div class="button-container">
               <button class="login-button">Configuraciones</button>
@@ -57,6 +58,36 @@
         </div>
       </div>
    </div>
+   <div class="modal-overlay" v-if="showModal" @click="activateModal()"></div>
+   <div class="modal" v-if="showModal">
+    <h1>Lorem Ipsum</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+    <button class="button" @click="activateModal()">
+      Close Modal
+    </button>
+        <h1>Lorem Ipsum</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+    <button class="button" @click="activateModal()">
+      Close Modal
+    </button>
+        <h1>Lorem Ipsum</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+    <button class="button" @click="activateModal()">
+      Close Modal
+    </button>
+        <h1>Lorem Ipsum</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+    <button class="button" @click="activateModal()">
+      Close Modal
+    </button>
+        <h1>Lorem Ipsum</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+    <button class="button" @click="activateModal()">
+      Close Modal
+    </button>
+
+  </div>
+
 </div>
 </template>
 
@@ -65,12 +96,17 @@ export default {
   name: 'TextCard',
     methods:{
       selectPortal: function(itemParam){
-          this.portal = itemParam
-          console.log('item',itemParam.title)
-      },  
+
       goToDashboard: function(){
         this.$router.push({ path:'dashboard' });              
       }  
+
+        this.portal = itemParam
+        console.log('item',itemParam.title)
+      },
+      activateModal: function(){
+        this.showModal = !this.showModal
+      }
     },
   props: {
     msg: Array,
@@ -89,6 +125,7 @@ export default {
       return{
           elements:[],
           portal:'',
+          showModal: false
       }
   }
 }
@@ -330,5 +367,52 @@ export default {
 .login-button:hover{
   transition: .5s;
   transform: scale(1.1);
+}
+
+.modal-overlay {
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ z-index: 98;
+ background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ z-index: 99;
+ overflow-y: auto;
+ width: 100%;
+ max-width: 600px;
+ max-height: 530px;
+ background-color: #FFF;
+ /*border-radius: 16px;*/
+ padding: 25px;
+ 
+ h1 {
+  color: #222;
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 15px;
+ }
+ 
+ p {
+  color: #666;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 15px;
+ }
+}
+
+@media (max-width: 900px) {
+  
+  .modal{
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 </style>
