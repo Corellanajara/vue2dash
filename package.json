@@ -16,7 +16,6 @@
     "build-progress": "vue-cli-service build --target wc --name progress-chart-app ./src/charts/ProgressChart.vue",
     "build-spark": "vue-cli-service build --target wc --name spark-chart-app ./src/charts/SparklineChart.vue",
     "build-triple": "vue-cli-service build --target wc --name triple-chart-app ./src/charts/TripleLineChart.vue",
-
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

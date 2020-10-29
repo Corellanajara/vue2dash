@@ -1,9 +1,8 @@
 <template>
   <div>
-    <login-app></login-app>
-  <!--
-   <dashboard-app></dashboard-app>
-  -->
+   <login-app></login-app>
+   <!--<portal-app></portal-app>-->
+   <!--<dashboard-app></dashboard-app>-->
     <!--
     <div class="caja">
       <mail-app title="Hola"></mail-app>
@@ -25,6 +24,7 @@ import CardCustom from './components/CardCustom.vue'
 import MailCard from './components/MailCard.vue'
 import Dashboard from './components/Dashboard.vue'
 import Login from './components/Login.vue'
+import Portals from './components/Portals.vue'
 
 export default {
   name: 'App',
@@ -45,6 +45,7 @@ export default {
     'mail-app':MailCard,
     'dashboard-app':Dashboard,
     'login-app':Login,
+    'portal-app':Portals
   }
 
 }
