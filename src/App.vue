@@ -1,7 +1,7 @@
 <template>
   <div>
-   <login-app></login-app>
-   <!--<portal-app></portal-app>-->
+   <!-- <login-app></login-app>-->
+   <portal-app></portal-app>
    <!--<dashboard-app></dashboard-app>-->
     <!--
     <div class="caja">
