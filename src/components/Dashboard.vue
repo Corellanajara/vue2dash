@@ -1,9 +1,7 @@
 <template>
   <div class="dashboard-container">
-    
     <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element.id">
         <text-card-app :msg="element.name" v-if="element.type == 'textCard'"></text-card-app>
-
         <bar-app class="prueba" :msg="element.name" :xaxisCategories="namesByMonth" :dataSeries="valuesByMonth" v-if="element.type == 'bar'  && valuesByMonth"></bar-app>
         <donut-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'progress'"></progress-app>
@@ -14,6 +12,9 @@
         <triple-line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" :title="element.title" v-if="element.type == 'tripleLine'"></triple-line-app>
         <line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" v-if="element.type == 'line'"></line-app>        
     </div>
+    <div class="ion-fab-button">
+    </div>
+    <button class="kc_fab_main_btn">+</button>
   </div>
 </template>
 
@@ -85,7 +86,7 @@ export default {
     //    console.log("values",this.valuesByMonth)
         this.elements.push(
           {id:5,name:'Cantidad por Mes',size:'bigger',type:'bar',series:this.valuesByMonth,categories:this.namesByMonth},
-          {id:13,name:'charmeleon',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
+          {id:12,name:'charmeleon',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
           {id:13,name:'Cantidad de piezas por arriendo',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
         )
        
@@ -292,5 +293,25 @@ export default {
 .prueba{
     width:90%;
     margin-left: 5%;
+}
+
+.kc_fab_main_btn{
+  background-color:#F44336;
+  width:60px;
+  height:60px;
+  position: fixed;
+  top: 87%;
+  left: 90%;
+  border-radius:100%;
+  background:#F44336;
+  border:none;
+  outline:none;
+  color:#FFF;
+  font-size:36px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s;  
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  cursor: pointer;
+  top:90;
 }
 </style>

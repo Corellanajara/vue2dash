@@ -61,7 +61,7 @@ export default {
 }
 
 body{
-  background: url('https://cdn.dribbble.com/users/648922/screenshots/11206395/media/5998f56329eda70b71fecd050032bc21.png');
+  background: #e6e9f8;
   background-position: center;
   margin: 0%;
 }

@@ -38,7 +38,7 @@
           </div>
           <div class="buttons-container">
             <div class="button-container">
-              <!--<button class="login-button" v-on:click="goToDashboard">Ingresar</button>-->
+              <!--<button class="login-button" >Ingresar</button>-->
               <button class="login-button" @click="activateModal()">Ingresar</button>
             </div>
             <div class="button-container">
@@ -62,27 +62,15 @@
    <div class="modal" v-if="showModal">
     <h1>Lorem Ipsum</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-    <button class="button" @click="activateModal()">
-      Close Modal
-    </button>
         <h1>Lorem Ipsum</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-    <button class="button" @click="activateModal()">
-      Close Modal
-    </button>
         <h1>Lorem Ipsum</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-    <button class="button" @click="activateModal()">
-      Close Modal
-    </button>
         <h1>Lorem Ipsum</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-    <button class="button" @click="activateModal()">
-      Close Modal
-    </button>
         <h1>Lorem Ipsum</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-    <button class="button" @click="activateModal()">
+    <button class="button" v-on:click="goToDashboard">
       Close Modal
     </button>
 
@@ -390,21 +378,22 @@ export default {
  background-color: #FFF;
  /*border-radius: 16px;*/
  padding: 25px;
+
+}
  
- h1 {
+ .modal h1 {
   color: #222;
   font-size: 32px;
   font-weight: 900;
   margin-bottom: 15px;
  }
  
- p {
+  .modal p {
   color: #666;
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 15px;
  }
-}
 
 @media (max-width: 900px) {
   
