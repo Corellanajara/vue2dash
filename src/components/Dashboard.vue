@@ -12,9 +12,23 @@
         <triple-line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" :title="element.title" v-if="element.type == 'tripleLine'"></triple-line-app>
         <line-app class="prueba" :xaxisCategories="element.categories" :dataSeries="element.series" v-if="element.type == 'line'"></line-app>        
     </div>
-    <div class="ion-fab-button">
-    </div>
-    <button class="kc_fab_main_btn">+</button>
+    <button class="kc_fab_main_btn" @click="activateModal()">+</button>
+   <div class="modal-overlay" v-if="showModal" @click="activateModal()"></div>
+    <div class="modal" v-if="showModal">
+      <h1>Lorem Ipsum</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+          <h1>Lorem Ipsum</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+          <h1>Lorem Ipsum</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+          <h1>Lorem Ipsum</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+          <h1>Lorem Ipsum</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
+      <button>
+        Close Modal
+      </button>
+    </div>    
   </div>
 </template>
 
@@ -41,9 +55,11 @@ export default {
   props: {
     textoculiao: String,
   },
-  methods:{
-    
-  },
+    methods:{
+      activateModal: function(){
+        this.showModal = !this.showModal
+      }
+    },
   mounted () {
     axios
       .get('http://201.239.15.63:5000/portalinmobiliario/')
@@ -96,6 +112,7 @@ export default {
   
   data: function (){
       return {
+        showModal: false,        
         valuesByMonth : [],
         namesByMonth : [],
         byDates : [],
@@ -193,7 +210,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .dashboard-container{
-    background: #e6e9f8;
+    background: #f5f5f5;
     width: 100%;
 }
 
@@ -209,9 +226,9 @@ export default {
     display: inline-flex;
     border-radius:5px;
     background:white;
-    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-  box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
   transition: .5s;
   cursor:pointer;
 }
@@ -233,9 +250,9 @@ export default {
     display: inline-flex;
     border-radius:5px;
     background:white;
-    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
   transition: .5s;
   cursor:pointer;
 }
@@ -256,9 +273,9 @@ export default {
     display: inline-flex;
     border-radius:5px;
     background:white;
-    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
   transition: .5s;
   cursor:pointer;
 }
@@ -279,9 +296,9 @@ export default {
     display: inline-flex;
     border-radius:5px;
     background:white;
-    -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-    box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
   transition: .5s;
   cursor:pointer;
 }
@@ -295,15 +312,55 @@ export default {
     margin-left: 5%;
 }
 
+.modal-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ z-index: 98;
+ background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ z-index: 99;
+ overflow-y: auto;
+ width: 100%;
+ max-width: 600px;
+ max-height: 530px;
+ background-color: #FFF;
+ /*border-radius: 16px;*/
+ padding: 25px;
+
+}
+ 
+ .modal h1 {
+  color: #222;
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 15px;
+ }
+ 
+  .modal p {
+  color: #666;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 15px;
+ }
+
 .kc_fab_main_btn{
-  background-color:#F44336;
+  background-color:#070618;
   width:60px;
   height:60px;
   position: fixed;
   top: 87%;
   left: 90%;
   border-radius:100%;
-  background:#F44336;
+  background:#070618;
   border:none;
   outline:none;
   color:#FFF;
@@ -313,5 +370,11 @@ export default {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   cursor: pointer;
   top:90;
+  transition: .5s;
+}
+
+.kc_fab_main_btn:hover{
+  transition: .5s;
+  transform: scale(1.2);
 }
 </style>

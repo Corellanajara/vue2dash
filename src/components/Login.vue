@@ -3,7 +3,7 @@
   <div class="side-container">
     <div class="left-side">
       <div class="logo-container">
-        <img class="logo" src="https://www.flaticon.com/svg/static/icons/svg/2845/2845177.svg">
+        <img class="logo" src="../assets/logo-white.svg">
       </div>
       <div class="input-container">
         <div class="input-box">
@@ -19,6 +19,9 @@
       <!--<button> NAVEGAR A PORTALES</button>-->
     </div>
     <div class="rigth-side">
+      <div class="rigth-logo-container">
+        <img class="rigth-logo" src="../assets/bar-logo.svg">
+      </div>
     </div>
   </div>
 </div>
@@ -66,21 +69,20 @@ export default {
 
 .left-side{
   background: white;
-  width: 68%;
+  width: 60%;
 }
 
 /* Logo */
 
 .logo-container{
-  width: 50%;
-  margin-left: 25%;
+  width: 40%;
+  margin-left: 30%;
   margin-top: 5%;
 }
 
 .logo{
-  width: 40%;
-  margin-left: 30%;
-  animation: float 1.5s ease infinite;
+  width: 50%;
+  margin-left: 25%;
 }
 
 /* logo animation */
@@ -120,8 +122,9 @@ export default {
   padding-top: 3%;
   padding-bottom: 3%;
   background: #eeeeee;
-  color: #252526;
-  font-family: 'Roboto', sans-serif;
+  color:  #070618;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
   font-size: 16px;
 }
 
@@ -143,9 +146,10 @@ export default {
 
 .login-button{
   font-family: "Roboto", sans-serif;
+  font-weight: 700;
   /* text-transform: uppercase; */
   outline: 0;
-  background: linear-gradient(90deg, rgba(49,49,204,1) 0%, rgba(115,111,254,1) 100%);
+  background: #070618;
   width: 90%;
   height: 40px;
   margin-left: 5%;
@@ -166,10 +170,23 @@ export default {
 .rigth-side{
   /*background: #1B0709;*/
   /*background: linear-gradient(90deg, rgba(49,49,204,1) 0%, rgba(115,111,254,1) 100%);*/
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,153,233,1) 100%);
-  background-size: 400% 400%;
+  background: #070618;
+  background-size: 300% 300%;
 	animation: gradient 10s ease infinite;
-  width: 32%;
+  width: 40%;
+}
+
+.rigth-logo-container{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.rigth-logo{
+  width: 50%;
+  margin-top: 25%;
+  margin-left: 25%;
+  animation: float 1.5s ease infinite;
 }
 
 @keyframes gradient {

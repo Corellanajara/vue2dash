@@ -85,8 +85,4 @@ background: red;
   position: fixed;
   z-index: 999;
 }
-
-.container{
-
-}
 </style>

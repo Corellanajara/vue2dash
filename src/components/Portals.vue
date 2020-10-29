@@ -30,7 +30,7 @@
       <div class="rigth-side">
         <div v-if="portal!==''">
           <div class="image-right-title">
-            <img src="https://www.fisalis.vase.cl/assets/icon/sucursal.svg" class="">
+            <img src="../assets/unselected-chart3.svg" class="">
           </div>
 
           <div class="container-title">
@@ -99,12 +99,7 @@ export default {
   },
   mounted(){
     this.elements.push(
-    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'},
-    {title:'Yapo',url:'https://www.portalinmobiliario.com/'},
-    {title:'Yapo',url:'https://www.portalinmobiliario.com/'},
-    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'},
-    {title:'Yapo',url:'https://www.portalinmobiliario.com/'},
-    {title:'Yapo',url:'https://www.portalinmobiliario.com/'},)
+    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'},)
   },
 
   data: function(){
@@ -129,11 +124,11 @@ export default {
 
 .bar{
   width: 100%;
-  background: white;
+  background:#070618;
   height: 50px;
   padding-bottom: 0.2%;
   border-bottom-style: solid;
-  border-bottom-color: #f5f5f5;
+  border-bottom-color:#070618;
   display: flex;
 }
 
@@ -165,6 +160,7 @@ export default {
   font-family: 'Roboto', sans-serif;
   font-size: 10px;
   text-align: right;
+  color: white;
 }
 
 .input-box{
@@ -208,7 +204,7 @@ export default {
   height: 100vh;
   overflow-y: auto;
   overflow-x:hidden;
-  background: #e6e9f8;
+  background: #f5f5f5;
 }
 
 .cards-container{
@@ -223,9 +219,9 @@ export default {
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   border-radius: 8px;
-  -webkit-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-  -moz-box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
-  box-shadow: 1px 2px 56px 4px rgba(193,202,235,1);
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+  box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
   font-family: "Roboto", sans-serif;
   transition: .5s;
   cursor: pointer;
@@ -337,7 +333,7 @@ export default {
   font-family: "Roboto", sans-serif;
   /* text-transform: uppercase; */
   outline: 0;
-  background: linear-gradient(90deg, rgba(49,49,204,1) 0%, rgba(115,111,254,1) 100%);
+  background: #070618;
   width: 90%;
   height: 40px;
   margin-left: 5%;
