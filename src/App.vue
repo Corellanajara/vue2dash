@@ -1,6 +1,7 @@
 <template>
   <div>
-   <login-app></login-app>
+    
+   <router-view></router-view>
    <!--<portal-app></portal-app>-->
    <!--<dashboard-app></dashboard-app>-->
     <!--
@@ -14,7 +15,9 @@
     <chart-app  msg="charmander"></chart-app>      
     -->
   </div>
-
+  
+    
+  
 </template>
 
 <script>

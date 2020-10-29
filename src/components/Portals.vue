@@ -38,7 +38,7 @@
           </div>
           <div class="buttons-container">
             <div class="button-container">
-              <button class="login-button">Ingresar</button>
+              <button class="login-button" v-on:click="goToDashboard">Ingresar</button>
             </div>
             <div class="button-container">
               <button class="login-button">Configuraciones</button>
@@ -67,7 +67,10 @@ export default {
       selectPortal: function(itemParam){
           this.portal = itemParam
           console.log('item',itemParam.title)
-      },
+      },  
+      goToDashboard: function(){
+        this.$router.push({ path:'dashboard' });              
+      }  
     },
   props: {
     msg: Array,

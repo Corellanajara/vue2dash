@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="button-container">
-        <button class="login-button" v-on:click="login">Ingresar</button>
+        <button class="login-button" v-on:click="login">Ingresar</button>         
       </div>
       <!--<button> NAVEGAR A PORTALES</button>-->
     </div>
@@ -29,7 +29,7 @@ export default {
   name: 'TextCard',
   methods:{
     login: function(){
-        /*console.log('funcion de login')*/
+       this.$router.push({ path:'portals' });              
     },
   }
   /*props: {
