@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container">
-    <h1 class="chart-title">Bar Chart</h1>
+    <h1 class="chart-title">{{msg}}</h1>
     <apexcharts v-if="msg" class="chart" type="bar" height="300" :options="chartOptions" :series="series"></apexcharts>
   </div>
 </template>
@@ -48,7 +48,7 @@ var obj = {
   
 }
 export default obj;
-var x = "Bar chart"
+var x = "Resultado "
 
 </script>
 
