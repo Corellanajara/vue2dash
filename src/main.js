@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import LoginComponent from './components/Login';
 import DashBoard from './components/Dashboard';
 import Portals from './components/Portals';
+import Table from './components/Table'
 import VueApexCharts from 'vue-apexcharts';
 
 Vue.component('apexchart', VueApexCharts)
@@ -16,7 +17,9 @@ const routes = [
   { path: '/login', component: LoginComponent },
   { path: '/', component: LoginComponent },
   { path: '/portals', component: Portals },
-  { path: '/dashboard', component: DashBoard }]
+  { path: '/dashboard', component: DashBoard },
+  { path: '/table', component: Table }
+]
 
 const router = new VueRouter({
   routes: routes
