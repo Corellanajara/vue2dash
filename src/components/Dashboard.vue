@@ -138,7 +138,7 @@ export default {
         var names = []
         ordenados.map(propierty =>{
           
-          if(bySectors[propierty].length > 1&&names.length < 12 ){
+          if(bySectors[propierty].length > 1&&names.length < 40 ){
             names.push(propierty)
             arr.push(bySectors[propierty].length)
           }
@@ -151,7 +151,7 @@ export default {
           {id:13,name:'Cantidad de piezas por arriendo',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
           {id:11,name:'Cantidad de piezas por arriendo',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
           {id:7,name:'Cantidad por Sector',size:'bigger',type:'bar',series:arr,labels:names},          
-          {id:9,name:'Cantidad por Sector',size:'bigger',type:'donut',series:arr,labels:names}      
+          {id:9,name:'Cantidad de casas en arriendo por Sector',size:'bigger',type:'donut',series:arr,labels:names}      
         )
        
       })      

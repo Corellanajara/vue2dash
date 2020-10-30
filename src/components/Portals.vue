@@ -181,7 +181,13 @@ export default {
         //console.log('item',itemParam.title)
       },
       goToDashboard: function(){
-        this.$router.push({ path:'dashboard' });              
+        if(this.portal.id==1){
+          this.$router.push({ path:'dashboard' });              
+        }else{
+          this.$router.push({path:'table'})
+        }
+
+        
       },
       activateModal: function(){
         this.showModal = !this.showModal
@@ -224,8 +230,11 @@ export default {
   },
   mounted(){
     this.elements.push(
-    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'})
-    this.cities.push({id:1,name:'concepcion',estate:false},{id:2,name:'santiago',estate:false},{id:3,name:'talca',estate:false},{id:4,name:'valparaiso',estate:false})
+    {id:1,title:'Portal Inmobiliario',url:'portalinmobiliario.com'},
+    {id:2,title:'Contraloria',url:'portalinmobiliario.com'})
+    
+    this.cities.push({id:1,name:'Concepción',estate:false})
+    //*,{id:2,name:'santiago',estate:false},{id:3,name:'talca',estate:false},{id:4,name:'valparaiso',estate:false}
   },
 
   data: function(){
