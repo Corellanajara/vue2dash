@@ -66,14 +66,16 @@
         </div>
       </div>
       <div class="data-modal">
-        <h1 class="title-data">Información</h1>
-        <div>
-          <h1 class="text-data">Para poder acceder a la información es <br>necesario que selecciones el tipo de información <br>a la que quieres ingresar</h1>
-        </div>
-        <div class="first-container">
+
+        <div class="first-container" v-if="modalEstate==0">
+          <h1 class="title-data">Información</h1>
+          <div>
+            <h1 class="text-data">Para poder acceder a la información es <br>necesario que selecciones el tipo de información <br>a la que quieres ingresar</h1>
+          </div>
+
           <h1 class="title-data">Primero, selecciona una ciudad</h1>
-          <div class="input-box">
-              <input class="input" type="search" placeholder="Buscar">
+          <div class="input-search-box">
+              <input class="input-search" type="search" placeholder="Buscar">
           </div>
           <div class="item-container" v-for="(city,index) in cities" v-bind:key="city.id" @click="changeCityEstate(city,index)">
             <div class="item-radio-button" v-if="city.estate">
@@ -87,38 +89,65 @@
             </div>
           </div>
           
-          <h1 class="list-header">Lista de ciudades seleccionadas</h1>
+        <h1 class="title-data">Lista de ciudades seleccionadas</h1>
           <div class="item-tags">
-            <div class="item-container" v-for="selectedCity of selectedCities" v-bind:key="selectedCity.id">
-              <h1 class="text-tag">{{selectedCity.name}}</h1>
+            <div class="item-container" v-for="(selectedCity,index) in selectedCities" v-bind:key="selectedCity.id" @click="removeElement(selectedCity,index)">
+              <div class="text-container-image">
+                <h1 class="text-tag">{{selectedCity.name}}</h1>
+              </div>
+              <div class="item-cancel-button">
+                <img class="cancel-image" src="../assets/cancel-button.svg">
+              </div>
             </div>
           </div>
-          <button class="modal-button" @click="goToDashboard()">Continuar</button>
+          <button class="modal-button" @click="changeModal(1)">Continuar</button>
         </div>
-        <!--
-        <div class="second-container">
-          <h1 class="title-data">Segunda, selecciona un rango de fechas</h1>
+               
+        <div class="second-container" v-if="modalEstate==1">
+          <h1 class="title-data">Selecciona un rango de fechas</h1>
           <div>
             <h1 class="text-data">(Fecha inicial y Fecha de término que deseas)</h1>
-          </div>          
-            <select class="select-css" id="indexEstate" name="indexEstate" placeholder="seleccionar predio">
-              <option>hola</option>
-            </select>
-          <button class="modal-button" @click="goToDashboard()">Continuar</button>
+          </div>
+          <div>
+            <h1 class="title-date">Fecha inicial (Desde)</h1>
+          </div>
+          <div class="date-container">      
+            <input class="date-input" type="date" value="2020-10-30" min="2015-10-9" max="2020-10-30">
+          </div>
+          <div>
+            <h1 class="title-date">Fecha de término (Hasta)</h1>
+          </div>
+          <div class="date-container">      
+            <input class="date-input" type="date" value="2020-10-30" min="2015-10-9" max="2020-10-30">
+          </div>
+          <button class="modal-button" @click="changeModal(2)">Continuar</button>                   
+          <button class="modal-button" @click="changeModal(0)">Volver Atrás</button> 
         </div>
-        -->
-        <!--
-          <div class="third-container">
-            <h1 class="title-data">Tercero selecciona un rango de precios</h1>
+
+          <div class="third-container" v-if="modalEstate==2">
+            <h1 class="title-data">Selecciona un rango de precios</h1>
             <div>
               <h1 class="text-data">Desde que precio hasta precio deseas la información</h1>
-            </div>          
-              <select class="select-css" id="indexEstate" name="indexEstate" placeholder="seleccionar predio">
-                <option>hola</option>
-              </select>
-            <button class="modal-button" @click="goToDashboard()">Generar Información</button>
+            </div>
+            <h1 class="title-price">Precio Inicial (Desde)</h1>
+           
+            <div class="input-price">
+                <input class="input" type="number" placeholder="Desde">
+            </div>
+
+            <h1 class="title-price">Precio Final (Hasta)</h1>
+
+            <div class="input-price">
+                <input class="input" type="number" placeholder="Hasta">
+            </div>
+            <!--
+            <div class="range-container">          
+                <input class="slider" type="range" min="0" max="1000000" value="500000" id="myRange">
+            </div>
+            -->
+            <button class="modal-button" @click="goToDashboard()">Generar Información</button>            
+            <button class="modal-button" @click="changeModal(1)">Volver Atrás</button>                           
           </div>
-          -->
       </div>
     </div>   
   </div>
@@ -155,6 +184,20 @@ export default {
           
           this.selectedCities = arr;
         }
+      },
+      removeElement: function(cityParamRe,indexRe){
+        this.selectedCities[indexRe].estate = false
+        var arr = [];
+
+        for(let i= 0; i<this.selectedCities.length; i++){
+           if(cityParamRe.id!=this.selectedCities[i].id){
+            arr.push(this.selectedCities[i])
+          }
+        }
+        this.selectedCities = arr;
+      },
+      changeModal: function(indexChangeModal){
+        this.modalEstate = indexChangeModal
       }
     },
   props: {
@@ -172,7 +215,8 @@ export default {
           cities: [],
           selectedCities: [],
           portal:'',
-          showModal: false
+          showModal: false,
+          modalEstate: 0,
       }
   }
 }
@@ -496,6 +540,34 @@ export default {
   font-weight: 400;
 }
 
+.input-search-box{
+  background: #eeeeee;
+  width: 70%;
+  margin-top: .5%;
+  margin-left: 15%;
+  border-radius: 15px;
+}
+
+.input-search{
+  border: 0;
+  width: 90%;
+  margin-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background: #eeeeee;
+  color: #252526;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+.input-search:active{
+  border: 0;
+}
+
+.input-search:focus{
+  outline: none;
+}
+
 .modal-button{
   font-family: "Roboto", sans-serif;
   /* text-transform: uppercase; */
@@ -503,8 +575,8 @@ export default {
   background: #070618;
   width: 50%;
   height: 40px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 3%;
+  margin-bottom: 3%;
   margin-left: 25%;
   border: 0;
   padding: 5px;
@@ -612,14 +684,6 @@ export default {
   height: 20px;
 }
 
-.item-tags{
-  width: 70%;
-  margin-left: 15%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display:inline-block;
-}
-
 .city-tag{
   margin-left: 2%;
   padding-left: 2%;
@@ -635,6 +699,75 @@ export default {
   font-weight: 500;
   font-size: 20px;
 }
+
+.text-container-image{
+  width: 80%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.item-cancel-button{
+  width: 10%;
+}
+
+.cancel-image{
+  width: 20px;
+  height: 20px;
+  margin-left: calc((100% - 20px)/2);
+  margin-top: 25%;  
+}
+
+/* fechas */
+
+.title-date{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+}
+
+.date-container{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 3%;
+}
+
+
+.date-input{
+  padding: 2%;
+  width: 50%;
+  margin-left: 23%;
+  background: #f5f5f5;
+  border: none;
+}
+
+/* Prices */
+
+.title-price{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  margin-top:5%;
+}
+
+.input-price{
+  background: #eeeeee;
+  width: 80%;
+  margin-top: 0%;
+  margin-left: 10%;
+  border-radius: 5px;
+}
+
+.input{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+
+
+
 
 @media (max-width: 900px) {
   
