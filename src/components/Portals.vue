@@ -39,7 +39,7 @@
           <div class="buttons-container">
             <div class="button-container">
               <!--<button class="login-button" >Ingresar</button>-->
-              <button class="login-button" @click="activateModal()">Ingresar</button>
+              <button class="login-button" @click="activateModal()">Ver Datos</button>
             </div>
             <div class="button-container">
               <button class="login-button">Configuraciones</button>
@@ -59,24 +59,63 @@
       </div>
    </div>
    <div class="modal-overlay" v-if="showModal" @click="activateModal()"></div>
-   <div class="modal" v-if="showModal">
-    <h1>Lorem Ipsum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-        <h1>Lorem Ipsum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-        <h1>Lorem Ipsum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-        <h1>Lorem Ipsum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-        <h1>Lorem Ipsum</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem provident explicabo accusamus laudantium voluptatum nobis sed nesciunt neque possimus molestiae?</p>
-    <button class="button" v-on:click="goToDashboard">
-      Close Modal
-    </button>
-
+    <div class="modal" v-if="showModal">
+      <div class="bar-modal">
+        <div class="container-bar-image">
+          <img class="bar-image" src="../assets/bar-logo3.svg">
+        </div>
+      </div>
+      <div class="data-modal">
+        <h1 class="title-data">Información</h1>
+        <div>
+          <h1 class="text-data">Para poder acceder a la información es <br>necesario que selecciones el tipo de información <br>a la que quieres ingresar</h1>
+        </div>
+        <div class="first-container">
+          <h1 class="title-data">Primero, selecciona una ciudad</h1>
+          <div class="input-box">
+              <input class="input" type="search" placeholder="Buscar">
+          </div>
+          <div class="item-container" v-for="(city,index) in cities" v-bind:key="city.id">
+            <div class="item-radio-button" v-if="city.estate">
+              <input class="radio-button" type="radio" checked>
+            </div>
+            <div class="item-radio-button" v-if="!city.estate">
+              <input class="radio-button" type="radio">
+            </div>
+            <div class="item-title-container">
+              <h1 class="item-title" @click="changeCityEstate(city,index)">{{city.name}}{{index}}</h1>
+            </div>
+          </div>
+          
+          <h1 class="list-header">Lista de ciudades seleccionadas</h1>
+          <div class="" v-for="selectedCity of selectedCities" v-bind:key="selectedCity.id">
+            <h1>{{selectedCity.name}}</h1>
+          </div>
+          <button class="modal-button" @click="goToDashboard()">Continuar</button>
+        </div>
+        <div class="second-container">
+          <h1 class="title-data">Segunda, selecciona un rango de fechas</h1>
+          <div>
+            <h1 class="text-data">(Fecha inicial y Fecha de término que deseas)</h1>
+          </div>          
+            <select class="select-css" id="indexEstate" name="indexEstate" placeholder="seleccionar predio">
+              <option>hola</option>
+            </select>
+          <button class="modal-button" @click="goToDashboard()">Continuar</button>
+        </div>
+          <div class="third-container">
+            <h1 class="title-data">Tercero selecciona un rango de precios</h1>
+            <div>
+              <h1 class="text-data">Desde que precio hasta precio deseas la información</h1>
+            </div>          
+              <select class="select-css" id="indexEstate" name="indexEstate" placeholder="seleccionar predio">
+                <option>hola</option>
+              </select>
+            <button class="modal-button" @click="goToDashboard()">Generar Información</button>
+          </div>
+      </div>
+    </div>   
   </div>
-
-</div>
 </template>
 
 <script>
@@ -92,6 +131,24 @@ export default {
       },
       activateModal: function(){
         this.showModal = !this.showModal
+      },
+      changeCityEstate: function(cityParam,index){
+
+        this.cities[index].estate = !this.cities[index].estate
+        if(this.cities[index].estate){
+          this.selectedCities.push(cityParam);
+        }
+        if(!this.cities[index].estate){
+          var arr = [];
+
+          for(let i= 0; i<this.selectedCities.length; i++){
+            if(cityParam.id!=this.selectedCities[i].id){
+              arr.push(this.selectedCities[i])
+            }
+          }
+          
+          this.selectedCities = arr;
+        }
       }
     },
   props: {
@@ -99,12 +156,15 @@ export default {
   },
   mounted(){
     this.elements.push(
-    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'},)
+    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'},{title:'Portal Inmobiliario',url:'portalinmobiliario.com'})
+    this.cities.push({id:1,name:'concepcion',estate:false},{id:2,name:'santiago',estate:false},{id:3,name:'talca',estate:false},{id:4,name:'valparaiso',estate:false})
   },
 
   data: function(){
       return{
           elements:[],
+          cities: [],
+          selectedCities: [],
           portal:'',
           showModal: false
       }
@@ -351,8 +411,10 @@ export default {
   transform: scale(1.1);
 }
 
+/* modal */
+
 .modal-overlay {
- position: absolute;
+ position: fixed;
  top: 0;
  left: 0;
  right: 0;
@@ -372,24 +434,167 @@ export default {
  max-width: 600px;
  max-height: 530px;
  background-color: #FFF;
+ /*
+ background-image: url('../assets/mail-background.svg');
+ */
  /*border-radius: 16px;*/
- padding: 25px;
+}
+
+/*modal bar */
+
+.bar-modal{
+  width:100%;
+  margin-left:0%;
+  background:#070618;
+}
+
+.container-bar-image{
+  width: 70px;
+  padding-top:3%;
+  padding-bottom: 3%;
+  margin-left: calc((100% - 70px)/2);
+}
+
+.bar-image{
+  width: 90%;
+  margin-left: 5%;
+}
+
+/* modal data */
+
+.container-mail-image{
+  width: 80%;
+  margin-left: 10%;
+}
+
+.mail-image{
+  width: 40%;
+  margin-top: 8%;
+  margin-left: 30%;
+}
+
+.title-data{
+  text-align: center;
+  font-size: 24px;
+  margin-top: 4%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+.text-data{
+  text-align: center;
+  font-size: 18px;  
+  margin-top: 2%;  
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.modal-button{
+  font-family: "Roboto", sans-serif;
+  /* text-transform: uppercase; */
+  outline: 0;
+  background: #070618;
+  width: 50%;
+  height: 40px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 25%;
+  border: 0;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition:.5s;
+}
+
+.select-css {
+  width: 70%;
+  background: #f5f5f5;
+  height: 35px;
+  margin-top: 0%;
+  margin-left: 15%;
+  padding-left: 2.5%;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #252526;
+  border-color: #fff transparent transparent transparent !important;
+}
+/*
+.text-option{
 
 }
- 
- .modal h1 {
-  color: #222;
-  font-size: 32px;
-  font-weight: 900;
-  margin-bottom: 15px;
- }
- 
-  .modal p {
-  color: #666;
+*/
+.select-css::-ms-expand {
+  display: none;
+}
+
+.select-css:hover {
+  border: none;
+}
+
+.select-css:active{
+  border: none;
+  border-color: #fff transparent transparent transparent !important;
+}
+
+.select-css:focus {
+  border: none;
+  border-color: #fff transparent transparent transparent !important;
+}
+
+.select-css:checked{
+  border: none;
+}
+
+.select-css option {
+  margin-top: 2%;
+  font-weight:normal;
+}
+
+/* Seleccionador de ciudad */
+
+.list-header{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 15px;
- }
+  margin-left: 3%;
+}
+
+.item-container{
+  width: 100%;
+  height: 50px;
+  margin-top: 2%;
+  background: #f5f5f5;
+  border: 1px;
+  cursor:pointer;
+  display: flex;
+}
+
+.item-title-container{
+  width: 40%;
+}
+
+.item-title{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 8%;
+}
+
+.item-radio-button{
+  width: 10%;
+  margin-left:5%;
+}
+
+.radio-button{
+  margin-top: 22%;
+  margin-left: 25%;
+  width: 20px;
+  height: 20px;
+}
 
 @media (max-width: 900px) {
   

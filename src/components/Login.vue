@@ -3,7 +3,7 @@
   <div class="side-container">
     <div class="left-side">
       <div class="logo-container">
-        <img class="logo" src="../assets/logo-white.svg">
+        <img class="logo" src="../assets/logo-white2.svg">
       </div>
       <div class="input-container">
         <div class="input-box">

@@ -17,7 +17,7 @@
     <div class="modal" v-if="showModal">
       <div class="bar-modal">
         <div class="container-bar-image">
-          <img class="bar-image" src="../assets/bar-logo.svg">
+          <img class="bar-image" src="../assets/bar-logo3.svg">
         </div>
       </div>
       <div class="data-modal">
@@ -25,10 +25,7 @@
         <div>
           <h1 class="text-data">Se enviará la información desde <br>el portal "x" en relación a la ciudad "x" </h1>
         </div>
-        <div class="container-mail-image">
-          <img class="mail-image" src="../assets/mail.svg">
-        </div>
-        
+
         <div>
           <h1 class="title-data">Correo</h1>
         </div>
@@ -38,12 +35,18 @@
         </div>
 
         <div class="input-box">
-            <input class="input" type="text" placeholder="Ingresar Correos">
+            <input class="input" type="text" placeholder="correoejemplo1@ejemplo.com,correoejemplo2@ejemplo.com">
         </div>
-        
+
         <button class="send-button">
           Enviar Correo
         </button>
+        <!--
+        <div class="container-mail-image">
+          <img class="mail-image" src="../assets/mail.svg">
+        </div>
+        -->
+
       </div>
     </div>    
   </div>
@@ -349,8 +352,11 @@ export default {
  overflow-y: auto;
  width: 100%;
  max-width: 600px;
- max-height: 530px;
+ max-height: 600px;
  background-color: #FFF;
+ /*
+ background-image: url('../assets/mail-background.svg');
+ */
  /*border-radius: 16px;*/
 }
 
@@ -453,7 +459,7 @@ export default {
   width: 60%;
   height: 40px;
   margin-top: 7%;
-  margin-bottom: 7%;
+  margin-bottom: 4%;
   margin-left: 20%;
   border: 0;
   padding: 5px;
