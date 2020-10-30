@@ -14,7 +14,7 @@
         <div class="card-container" v-for="element of elements" v-bind:key="element.id" @click="selectPortal(element)">
           <div class="card-wrapper">
             <div class="image-container">
-              <img class="image" src="https://pbs.twimg.com/profile_images/714449847852642304/-YebACih.jpg">
+              <img class="image" src="../assets/portal-inmobiliario.jpg">
             </div>
             <div class="text-container" style="cursor: pointer;">
                 <h1 class="title-card">{{element.title}}</h1>
@@ -22,6 +22,18 @@
             </div>
           </div>
         </div>
+
+          <div class="card-container">
+            <div class="card-wrapper">
+              <div class="image-container">
+                <img class="image" src="../assets/yapo.jpg">
+              </div>
+              <div class="text-container" style="cursor: pointer;">
+                  <h1 class="title-card">Yapo</h1>
+                  <h1 class="subtitle-card">Proximamente</h1>
+              </div>
+            </div>
+          </div>
 
         <div class="final-item">
         </div>
@@ -75,7 +87,7 @@
 
           <h1 class="title-data">Primero, selecciona una ciudad</h1>
           <div class="input-search-box">
-              <input class="input-search" type="search" placeholder="Buscar">
+            <input class="input-search" type="buscar para filtrar" v-model="filterCity" placeholder="Buscar">
           </div>
           <div class="item-container" v-for="(city,index) in filteredList()" v-bind:key="city.id" @click="changeCityEstate(city,index)">
             <div class="item-radio-button" v-if="city.estate">
@@ -85,7 +97,7 @@
               <img class="radio-image" src="../assets/unselected-radio.svg">
             </div>
             <div class="item-title-container">
-              <h1 class="item-title" >{{city.name}}{{index}}</h1>
+              <h1 class="item-title" >{{city.name}}</h1>
             </div>
           </div>
           
@@ -212,7 +224,7 @@ export default {
   },
   mounted(){
     this.elements.push(
-    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'},{title:'Portal Inmobiliario',url:'portalinmobiliario.com'})
+    {title:'Portal Inmobiliario',url:'portalinmobiliario.com'})
     this.cities.push({id:1,name:'concepcion',estate:false},{id:2,name:'santiago',estate:false},{id:3,name:'talca',estate:false},{id:4,name:'valparaiso',estate:false})
   },
 
