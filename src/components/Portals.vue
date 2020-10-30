@@ -75,24 +75,27 @@
           <div class="input-box">
               <input class="input" type="search" placeholder="Buscar">
           </div>
-          <div class="item-container" v-for="(city,index) in cities" v-bind:key="city.id">
+          <div class="item-container" v-for="(city,index) in cities" v-bind:key="city.id" @click="changeCityEstate(city,index)">
             <div class="item-radio-button" v-if="city.estate">
-              <input class="radio-button" type="radio" checked>
+              <img class="radio-image" src="../assets/selected-radio.svg">
             </div>
             <div class="item-radio-button" v-if="!city.estate">
-              <input class="radio-button" type="radio">
+              <img class="radio-image" src="../assets/unselected-radio.svg">
             </div>
             <div class="item-title-container">
-              <h1 class="item-title" @click="changeCityEstate(city,index)">{{city.name}}{{index}}</h1>
+              <h1 class="item-title" >{{city.name}}{{index}}</h1>
             </div>
           </div>
           
           <h1 class="list-header">Lista de ciudades seleccionadas</h1>
-          <div class="" v-for="selectedCity of selectedCities" v-bind:key="selectedCity.id">
-            <h1>{{selectedCity.name}}</h1>
+          <div class="item-tags">
+            <div class="item-container" v-for="selectedCity of selectedCities" v-bind:key="selectedCity.id">
+              <h1 class="text-tag">{{selectedCity.name}}</h1>
+            </div>
           </div>
           <button class="modal-button" @click="goToDashboard()">Continuar</button>
         </div>
+        <!--
         <div class="second-container">
           <h1 class="title-data">Segunda, selecciona un rango de fechas</h1>
           <div>
@@ -103,6 +106,8 @@
             </select>
           <button class="modal-button" @click="goToDashboard()">Continuar</button>
         </div>
+        -->
+        <!--
           <div class="third-container">
             <h1 class="title-data">Tercero selecciona un rango de precios</h1>
             <div>
@@ -113,6 +118,7 @@
               </select>
             <button class="modal-button" @click="goToDashboard()">Generar Información</button>
           </div>
+          -->
       </div>
     </div>   
   </div>
@@ -263,7 +269,7 @@ export default {
   width: 70% !important;
   height: 100vh;
   overflow-y: auto;
-  overflow-x:hidden;
+  overflow-x: hidden;
   background: #f5f5f5;
 }
 
@@ -429,6 +435,7 @@ export default {
  left: 50%;
  transform: translate(-50%, -50%);
  z-index: 99;
+ overflow-x: hidden;
  overflow-y: auto;
  width: 100%;
  max-width: 600px;
@@ -567,10 +574,12 @@ export default {
   width: 100%;
   height: 50px;
   margin-top: 2%;
-  background: #f5f5f5;
-  border: 1px;
+  background: white;
+  border: 2px;
   cursor:pointer;
   display: flex;
+  border-bottom-style: solid;
+  border-bottom-color:#EFEFEF;  
 }
 
 .item-title-container{
@@ -594,6 +603,37 @@ export default {
   margin-left: 25%;
   width: 20px;
   height: 20px;
+}
+
+.radio-image{
+  margin-left: calc((100% - 20px)/2);
+  margin-top: 25%;
+  width: 20px;
+  height: 20px;
+}
+
+.item-tags{
+  width: 70%;
+  margin-left: 15%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display:inline-block;
+}
+
+.city-tag{
+  margin-left: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border-radius: 10px;
+  border-bottom-right-radius: 25px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.text-tag{
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 @media (max-width: 900px) {

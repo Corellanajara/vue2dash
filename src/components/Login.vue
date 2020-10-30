@@ -20,7 +20,7 @@
     </div>
     <div class="rigth-side">
       <div class="rigth-logo-container">
-        <img class="rigth-logo" src="../assets/bar-logo.svg">
+        <img class="rigth-logo" src="../assets/logo-black2.svg">
       </div>
     </div>
   </div>

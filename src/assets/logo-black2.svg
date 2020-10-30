@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.5, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 186.1 166.3" style="enable-background:new 0 0 186.1 166.3;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_2_);}
+	.st2{fill:url(#SVGID_3_);}
+</style>
+<title>bar-logo</title>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="26.8434" y1="82.5" x2="135.1931" y2="82.5">
+	<stop  offset="0" style="stop-color:#F22178"/>
+	<stop  offset="1" style="stop-color:#9D00D4"/>
+</linearGradient>
+<path class="st0" d="M92.1,147.7c-36,0-65.2-29.2-65.2-65.2c0-34.6,27.1-63,61.2-65.1v27.3c-19.1,2-34,18.2-34,37.8
+	c0,21,17.1,38.1,38.1,38.1c9,0,17.3-3.2,23.9-8.4l19.2,19.2C123.7,141.5,108.6,147.7,92.1,147.7"/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="121.7105" y1="106.0129" x2="157.1566" y2="106.0129">
+	<stop  offset="0" style="stop-color:#30DFB0"/>
+	<stop  offset="1" style="stop-color:#10A4F9"/>
+</linearGradient>
+<path class="st1" d="M157.2,86.5c-0.9,14.9-6.8,28.5-16.2,39l-19.2-19.2c4.5-5.5,7.4-12.3,8.2-19.8H157.2z"/>
+<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="96.1589" y1="47.8422" x2="157.1566" y2="47.8422">
+	<stop  offset="0" style="stop-color:#F12E89"/>
+	<stop  offset="1" style="stop-color:#FA6C16"/>
+</linearGradient>
+<path class="st2" d="M157.2,78.3h-27.3c-1.8-17.7-16-31.9-33.7-33.7V17.3C128.9,19.3,155.2,45.6,157.2,78.3z"/>
+</svg>

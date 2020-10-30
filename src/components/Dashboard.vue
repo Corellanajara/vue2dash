@@ -352,7 +352,7 @@ export default {
  overflow-y: auto;
  width: 100%;
  max-width: 600px;
- max-height: 600px;
+ max-height: 620px;
  background-color: #FFF;
  /*
  background-image: url('../assets/mail-background.svg');
