@@ -73,9 +73,9 @@
         <div class="first-container">
           <h1 class="title-data">Primero, selecciona una ciudad</h1>
           <div class="input-box">
-              <input class="input" type="search" placeholder="Buscar">
+              <input class="input" type="buscar para filtrar" v-model="filterCity" placeholder="Buscar">
           </div>
-          <div class="item-container" v-for="(city,index) in cities" v-bind:key="city.id" @click="changeCityEstate(city,index)">
+          <div class="item-container" v-for="(city,index) in filteredList()" v-bind:key="city.id" @click="changeCityEstate(city,index)">
             <div class="item-radio-button" v-if="city.estate">
               <img class="radio-image" src="../assets/selected-radio.svg">
             </div>
@@ -126,11 +126,18 @@
 
 <script>
 export default {
+  filterCity : '',
   name: 'TextCard',
     methods:{
+      filteredList() {      
+        return this.cities.filter(city => {
+          //console.log("filtrando");
+          return city.name.toLowerCase().includes(this.filterCity.toLowerCase())
+        })
+      },      
       selectPortal: function(itemParam){
         this.portal = itemParam
-        console.log('item',itemParam.title)
+        //console.log('item',itemParam.title)
       },
       goToDashboard: function(){
         this.$router.push({ path:'dashboard' });              
@@ -167,13 +174,18 @@ export default {
   },
 
   data: function(){
-      return{
+
+      return{   
+          filterCity : '',       
           elements:[],
           cities: [],
           selectedCities: [],
           portal:'',
           showModal: false
       }
+  },
+  computed: {
+    
   }
 }
 
