@@ -2,7 +2,7 @@
   <div class="dashboard-container">
     <div v-bind:class="element.size" v-for="element of elements" v-bind:key="element.id">
         <text-card-app :msg="element.name" v-if="element.type == 'textCard'"></text-card-app>
-        <bar-app class="prueba" :msg="element.name" :xaxisCategories="namesByMonth" :dataSeries="valuesByMonth" v-if="element.type == 'bar'  && valuesByMonth"></bar-app>
+        <bar-app class="prueba" :msg="element.name"  :dataSeries="element.series" :xaxisCategories="element.labels" v-if="element.type == 'bar'  && valuesByMonth"></bar-app>
         <donut-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'donut'"></donut-app>
         <progress-app class="prueba" :msg="element.name" :dataSeries="element.series" :dataLabels="element.labels" v-if="element.type == 'progress'"></progress-app>
         <area-app class="prueba" :msg="element.name" :title="element.title" :subtitle="element.subtitle" :dataSeries="element.series" v-if="element.type == 'area' "></area-app>
@@ -84,46 +84,74 @@ export default {
     axios
       .get('http://201.239.15.63:5000/portalinmobiliario/')
       .then(response => {
-        var datos = response.data                
-        var prices = [];
-        var dates = []
-        var rooms = []
+        var datos = response.data     
+        var datosFiltrados = datos.filter(dato=>{
+          var newdate = new Date(dato.date);          
+          var month = newdate.getMonth() +"-"+ newdate.getFullYear()            
+          return month == "9-2020"
+        })           
+        var prices = [];        
+        var rooms = []        
+        var bySectors = [];
         datos.map(dato=>{     
           var newdate = new Date(dato.date);
             var date = newdate.toLocaleString();
             var month = newdate.getMonth() +"-"+ newdate.getFullYear()            
+            
             if(!this.byDates[date]){
               this.byDates[date] = []
             }
             if(!this.byMonths[month]){
               this.byMonths[month] = []
-            }
+            }                                    
             dato.price = dato.price.replaceAll(".","")               
             this.byDates[date].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})            
-            this.byMonths[month].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})                        
-
-            if(month == "9-2020"){
-              if(!rooms[dato.Dormitorios||'No Informa']){
-                rooms[dato.Dormitorios||'No Informa'] = 0;
-              }
-              rooms[dato.Dormitorios||'No Informa'] = rooms[dato.Dormitorios||'No Informa'] + 1;
-              prices.push(parseInt(dato.price));
-              dates.push(newdate.toLocaleDateString())
-            }
-            
+            this.byMonths[month].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})                                                
         })        
+        datosFiltrados.map(dato=>{                    
+          var tam = dato.title.split(",")
+          var sector = tam[tam.length - 2] || tam[tam.length - 1]
+          if(!bySectors[sector]){
+              bySectors[sector] = []
+            }
+          bySectors[sector].push(dato);
+          if(!rooms[dato.Dormitorios||'No Informa']){
+            rooms[dato.Dormitorios||'No Informa'] = 0;
+          }
+          rooms[dato.Dormitorios||'No Informa'] = rooms[dato.Dormitorios||'No Informa'] + 1;
+          prices.push(parseInt(dato.price));          
+        })
         this.valuesByMonth = [];        
         this.namesByMonth = [];
         for(var mon of Object.keys( this.byMonths) ){            
             this.valuesByMonth.push(this.byMonths[mon].length)
             this.namesByMonth.push(mon)      
         }
-   //     console.log("names",this.namesByMonth)
-    //    console.log("values",this.valuesByMonth)
+        ////console.log(bySectors);
+        
+        var keys = Object.keys(bySectors)
+
+        var ordenados = keys.sort(function(a, b){  
+          return bySectors[b].length - bySectors[a].length; 
+        });
+        var arr = [];
+        var names = []
+        ordenados.map(propierty =>{
+          
+          if(bySectors[propierty].length > 1&&names.length < 12 ){
+            names.push(propierty)
+            arr.push(bySectors[propierty].length)
+          }
+        })
+        //console.log("ordenados",arr)
+        //console.log("names",names)
+    //    //console.log("values",this.valuesByMonth)
         this.elements.push(
-          {id:5,name:'Cantidad por Mes',size:'bigger',type:'bar',series:this.valuesByMonth,categories:this.namesByMonth},
-          {id:12,name:'charmeleon',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
+          {id:5,name:'Cantidad por Mes',size:'bigger',type:'bar',series:this.valuesByMonth,labels:this.namesByMonth},                    
           {id:13,name:'Cantidad de piezas por arriendo',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
+          {id:11,name:'Cantidad de piezas por arriendo',size:'medium',type:'donut', series:Object.values(rooms), labels:Object.keys(rooms)},
+          {id:7,name:'Cantidad por Sector',size:'bigger',type:'bar',series:arr,labels:names},          
+          {id:9,name:'Cantidad por Sector',size:'bigger',type:'donut',series:arr,labels:names}      
         )
        
       })      
@@ -138,8 +166,7 @@ export default {
         byDates : [],
         byMonths : [],
         commons : [],
-        prices : [],
-        titles : [],
+        prices : [],        
         elements:[                    
         /*                        
                         {id:2,name:'charmeleon',size:'small',type:'sparkline',sparklineType:'bar', title:'Titulo', subtitle:'Subtitulo',series:[23, 11, 29, 50, 23, 12, 77, 51, 44, 22, 30]},
