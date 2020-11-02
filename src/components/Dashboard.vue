@@ -35,10 +35,9 @@
         </div>
 
         <div class="input-box">
-            <input class="input" type="text" placeholder="correoejemplo1@ejemplo.com,correoejemplo2@ejemplo.com">
-        </div>
+            <input class="input" type="text" placeholder="correoejemplo1@ejemplo.com,correoejemplo2@ejemplo.com" @input="handleMailInput($event.target.value)"></div>
 
-        <button class="send-button">
+        <button class="send-button" @click="confirmMail()">
           Enviar Correo
         </button>
         <!--
@@ -47,6 +46,21 @@
         </div>
         -->
 
+      </div>
+    </div>
+
+     <div class="alert-overlay" v-if="showAlert"  @click="desactivateAlert()"></div>
+
+    <div class="alert" v-if="showAlert">
+      <h1 class="title-alert">Confirmar</h1>
+      <h1 class="text-alert">Estás apunto de enviar la información</h1>
+      <div class="button-alert-container">
+        <div class="right-side-button-alert">
+          <h1 class="alert-option" @click="desactivateAlert()">Cancelar</h1>
+        </div>
+        <div class="left-side-button-alert">
+          <h1 class="alert-option" @click="sendMail()">Enviar</h1>
+        </div>
       </div>
     </div>    
   </div>
@@ -78,6 +92,28 @@ export default {
     methods:{
       activateModal: function(){
         this.showModal = !this.showModal
+      },
+      activateAlert: function(){
+        this.showAlert = true
+      },
+      desactivateAlert: function(){
+        this.showAlert = false
+      },
+      confirmMail: function(){
+        this.activateAlert();        
+      },
+      sendMail: function(){
+       var mails = this.inputMail;
+      axios
+        .post('http://localhost:4600/mails',{mails}).then(this.cleanPage());
+      },
+      handleMailInput: function(value){
+        this.inputMail = value;
+      },
+      cleanPage(){
+        this.desactivateAlert();
+        this.activateModal();
+        this.inputMail ='';
       }
     },
   mounted () {
@@ -104,7 +140,7 @@ export default {
             if(!this.byMonths[month]){
               this.byMonths[month] = []
             }                                    
-            dato.price = dato.price.replaceAll(".","")               
+            //dato.price = dato.price.replaceAll(".","")               
             this.byDates[date].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})            
             this.byMonths[month].push({"title":dato.title,"price":( parseInt( dato.price )||0),"commons":(parseInt(dato['Gastos comunes'])||0)})                                                
         })        
@@ -160,7 +196,9 @@ export default {
   
   data: function (){
       return {
-        showModal: false,        
+        showModal: false,
+        showAlert : false,
+        inputMail: "",       
         valuesByMonth : [],
         namesByMonth : [],
         byDates : [],
@@ -536,4 +574,71 @@ export default {
   height: 30px;
 }
 
+.alert-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ z-index: 998;
+ background-color: rgba(0, 0, 0, 0.3);
+}
+
+.alert{
+ padding: 1%;
+ position: fixed;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ z-index: 999;
+ overflow-y: hidden;
+ width:100%;
+ height: 100%;
+ max-width: 250px;
+ max-height: 150px;
+ background-color: #FFF;
+ border-radius:5px;
+ -webkit-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+ -moz-box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+ box-shadow: 0px 2px 5px 0px rgba(184,184,184,1);
+}
+
+.title-alert{
+  font-size:20px;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  margin-left: 5%;
+  font-weight: 600;
+}
+
+
+.text-alert{
+  font-size:18px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-weight: 400;
+}
+
+.button-alert-container{
+  width:100%;
+  margin-top:2%;
+  display:flex;
+}
+
+.left-side-button-alert{
+  width: 100%;
+}
+
+.right-side-button-alert{
+  width:100%;
+}
+
+.alert-option{
+  font-size:15px;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-weight: 400;
+  color: #3880ff;
+  cursor:pointer
+}
 </style>
