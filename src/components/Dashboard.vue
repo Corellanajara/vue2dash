@@ -105,7 +105,7 @@ export default {
       sendMail: function(){
        var mails = this.inputMail;
       axios
-        .post('http://localhost:4600/mails',{mails}).then(this.cleanPage());
+        .post('http://201.239.15.63:5500/mails',{mails}).then(this.cleanPage());
       },
       handleMailInput: function(value){
         this.inputMail = value;

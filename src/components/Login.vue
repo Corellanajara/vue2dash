@@ -3,7 +3,10 @@
   <div class="side-container">
     <div class="left-side">
       <div class="logo-container">
-        <img class="logo" src="../assets/logo-white2.svg">
+        <img class="logo" src="../assets/logo-black2.svg">
+      </div>
+      <div class="logo-container">
+        <img class="logo" src="../assets/iris.png">
       </div>
       <div class="input-container">
         <div class="input-box">
@@ -77,7 +80,7 @@ export default {
 .logo-container{
   width: 40%;
   margin-left: 30%;
-  margin-top: 5%;
+  margin-top: 2.5%;
 }
 
 .logo{
